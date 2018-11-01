@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 /*Funcion que genera el algoritmo genetico*/
 function evoluciona(){
-    $('.loading').removeClass('hide');
+
     poblacionInicial 	= $('#poblacion').val();
     pc 					= $('#cruzamiento').val();
     pm 					= $('#mutacion').val();
@@ -31,7 +31,6 @@ function evoluciona(){
     datosGeneraciones 	= [];
     console.table(poblacionAlInicio);
     $('.res-ag').removeClass('toHide');
-    graficaPastel('#genoma-inicio', poblacionAlInicio, 'Distribución al inicio');
     imprimeTablaInicial();
     for(var k=0;k<generaciones;k++){
         evaluaPoblacion();
@@ -48,8 +47,6 @@ function evoluciona(){
     }
     console.table(poblacion);
     imprimeTablaFinal();
-    graficaGenoma(datosGeneraciones);
-    graficaPastel('#genoma-final', poblacion, 'Distribución al final');
 }
 
 /*Funcion carga una población inicial para evolucionar*/

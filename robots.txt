@@ -1,4 +1,7 @@
-# robotstxt.org/
-
-User-agent: * 
-Disallow:
+El alumno deberá explicar, analizar, implementar y evaluar una máquina evolutiva
+basada en algoritmos genéticos. La máquina evolutiva deberá evolucionar a 30 unos 
+en uno o varios de sus cromosomas (función objetivo), se generara una población inicial de 50 cromosomas,
+cada cromosoma contiene una longitud de 30 genes (cada gen representa un 1 o un 0 en el cromosoma
+y es generado aleatoriamente). La selección se hará por ruleta, el cruzamiento se efectuara inicialmente con
+probabilidad de cruza pc = 0.70 y la mutación se efectuara con una probabilidad 
+de mutación pm = 0.0555.
