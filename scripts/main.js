@@ -7,7 +7,7 @@ var datosGeneraciones = [];
 
 //Variables iniciales
 var pc = 0.70;
-var genes = 30;
+var genes = 4; // numero de bits que utlizaremos 
 var pm = 0.0555;
 var poblacionInicial = 50;
 var generaciones = 30;
@@ -54,6 +54,7 @@ function iniciaPoblacion(){
     console.log('--- Poblacion Inicial ---');
     poblacion = [];
     for(i=0;i<poblacionInicial;i++){
+        
         var objetoInicial = {
             cromosomaArray:[]
         };
@@ -67,13 +68,15 @@ function iniciaPoblacion(){
     poblacionAlInicio = poblacion; //Guarda la poblacion al inicio para comparar.
     console.log(poblacion);
 }
+
+
 /*Evalua la población asignado su calificacion(Fitness)*/
 function evaluaPoblacion(){
     console.log('--- Evalua Poblacion ---');
     sumaTotal = 0;
     for(i=0;i<poblacion.length;i++){
         poblacion[i].cromosomaBin = poblacion[i].cromosomaArray.join('');
-        poblacion[i].cromosomaTotal = ((parseInt(poblacion[i].cromosomaBin, 2))/2^30);
+        poblacion[i].cromosomaTotal = ((parseInt(poblacion[i].cromosomaBin, 2))/2^genes);
         poblacion[i].fitness = fitness(poblacion[i].cromosomaBin);
         sumaTotal+=poblacion[i].fitness;
     }
@@ -84,7 +87,7 @@ function evaluaPoblacion(){
 /*F(x) Funcion que  obtiene la calificacion basado en el numero de "1's" de la cadena*/
 function fitness(valor){
     // devuelve la cantidad de "1" que contiene el cromosoma
-    unos = (valor.split("1").length-1)/30;
+    unos = (valor.split("1").length-1)/genes;
     //return ( (1-Math.pow((11/2)*unos-(7/2),2))*(cos((11/2)*unos-(7/2))+1)+2   );
     return (Math.pow(unos,7));
 }
