@@ -127,4 +127,5 @@ function numMJ()
     var res;
 
     res=( Math.log(bj-aj)*( Math.pow(10,n) ))/Math.log(2);
+    return res;
 }
