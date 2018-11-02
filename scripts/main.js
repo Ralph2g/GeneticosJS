@@ -117,3 +117,14 @@ function numeroAleatorio(){
     var numero = Math.round(Math.random());
     return numero;
 }
+
+/*Funcion que saca el valor MJ de las variables */
+function numMJ()
+{
+    var bj;
+    var aj;
+    var n;
+    var res;
+
+    res=( Math.log(bj-aj)*( Math.pow(10,n) ))/Math.log(2);
+}
