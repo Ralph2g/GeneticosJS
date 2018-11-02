@@ -11,49 +11,103 @@
             <div class="app">
                 <div class="row">
                     <div class="col s4">
-                        
     <!--Formulario para introducir los datos-->
     <form id="formulario " class="parametros">
         <div ><h5>Parametros</h5>
             <div class="input-field col s12">
-                <input id="poblacion" type="text" value="50" class="validate" required data-parsley-type="integer">
+                <input id="poblacion" type="text" value="50" required data-parsley-type="integer">
                 <label for="poblacion">Poblacion</label>
             </div>
                 <div class="input-field col s12">
-            <input id="generaciones" type="text" value="30"   class="validate" required data-parsley-type="integer">
-            <label for="generaciones">Generaciones (ITERACIONES)</label>
+            <input id="generaciones" type="text" value="30"  required data-parsley-type="integer">
+            <label for="generaciones">Generaciones (ITERACIONES) Max 100</label>
         </div>
-        
         </div>
 
             
         <!--Formulario para introducir los datos-->
-                <div class="input-field col s12">
-                    <input id="fZa" type="text" value="50"  required data-parsley-type="integer">X +
-                    <input id="fZb" type="text" value="50"  required data-parsley-type="integer">Y +
-                    <input id="fZc" type="text" value="50"  required data-parsley-type="integer">Z +
-                    <input id="fZd" type="text" value="50"  required data-parsley-type="integer">W +
+                <div class="input-field col s12">F(
+                    <select name="maxMin">
+                        <option value="MAX">Max</option>
+                        <option value="MIN">Min</option>
+                    </select>) = 
+                    <input id="fZa" type="text" value="0" required data-parsley-type="integer">X +
+                    <input id="fZb" type="text" value="0"  required data-parsley-type="integer">Y +
+                    <input id="fZc" type="text" value="0"  required data-parsley-type="integer">Z +
+                    <input id="fZd" type="text" value="0"  required data-parsley-type="integer">W +
+                    <input id="fZcons" type="text" value="0"  required data-parsley-type="integer">
                     <label for="fZ">Funcion Z</label>
                 </div>
+                <h7>Restricciones: <br></h7>
                     <div class="input-field col s12">
-                <input id="r1" type="text" value="30"   class="validate" required data-parsley-type="integer">
+                <input id="r1a" type="text" value="0" required data-parsley-type="integer">X +
+                <input id="r1b" type="text" value="0"  required data-parsley-type="integer">Y +
+                <input id="r1c" type="text" value="0"  required data-parsley-type="integer">Z +
+                <input id="r1d" type="text" value="0"  required data-parsley-type="integer">W
+                <select name="r1">
+                    <option value=">">&gt;</option>
+                    <option value="<">&lt;</option>
+                    <option value=">=">&ge;</option>
+                    <option value="<=">&le;</option>
+                </select>
+                <input id="r1cons" type="text" value="0"  required data-parsley-type="integer">
                 <label for="r1">Restriccion 1:</label>
             </div>
             <div class="input-field col s12">
-                <input id="r2" type="number" value="0.70" step="0.01" class="validate">
+                <input id="r2a" type="text" value="0" required data-parsley-type="integer">X +
+                <input id="r2b" type="text" value="0"  required data-parsley-type="integer">Y +
+                <input id="r2c" type="text" value="0"  required data-parsley-type="integer">Z +
+                <input id="r2d" type="text" value="0"  required data-parsley-type="integer">W
+                <select name="r2">
+                    <option value=">">&gt;</option>
+                    <option value="<">&lt;</option>
+                    <option value=">=">&ge;</option>
+                    <option value="<=">&le;</option>
+                </select>
+                <input id="r2cons" type="text" value="0"  required data-parsley-type="integer">
                 <label for="r2">Restriccion 2:</label>
             </div>
             <div class="input-field col s12">
-                <input id="r3" type="number" value="0.0555" step="0.001" class="validate">
+                <input id="r3a" type="text" value="0" required data-parsley-type="integer">X +
+                <input id="r3b" type="text" value="0"  required data-parsley-type="integer">Y +
+                <input id="r3c" type="text" value="0"  required data-parsley-type="integer">Z +
+                <input id="r3d" type="text" value="0"  required data-parsley-type="integer">W
+                <select name="r3">
+                    <option value=">">&gt;</option>
+                    <option value="<">&lt;</option>
+                    <option value=">=">&ge;</option>
+                    <option value="<=">&le;</option>
+                </select>
+                <input id="r3cons" type="text" value="0"  required data-parsley-type="integer">
                 <label for="r3">Restriccion 3:</label>
             </div>
             
             <div class="input-field col s12">
-                <input id="r4" type="number" value="0.0555" step="0.001" class="validate">
+                <input id="r4a" type="text" value="0">X +
+                <input id="r4b" type="text" value="0"  required data-parsley-type="integer">Y +
+                <input id="r4c" type="text" value="0"  required data-parsley-type="integer">Z +
+                <input id="r4d" type="text" value="0"  required data-parsley-type="integer">W
+                <select name="r4">
+                    <option value=">">&gt;</option>
+                    <option value="<">&lt;</option>
+                    <option value=">=">&ge;</option>
+                    <option value="<=">&le;</option>
+                </select>
+                <input id="r4cons" type="text" value="0"  required data-parsley-type="integer">
                 <label for="r4">Restriccion 4:</label>
             </div>
             <div class="input-field col s12">
-                <input id="r5" type="number" value="0.0555" step="0.001" class="validate">
+                <input id="r5a" type="text" value="0" required data-parsley-type="integer">X +
+                <input id="r5b" type="text" value="0" required data-parsley-type="integer">Y +
+                <input id="r5c" type="text" value="0" required data-parsley-type="integer">Z +
+                <input id="r5d" type="text" value="0" required data-parsley-type="integer">W
+                <select name="r5">
+                    <option value=">">&gt;</option>
+                    <option value="<">&lt;</option>
+                    <option value=">=">&ge;</option>
+                    <option value="<=">&le;</option>
+                </select>
+                <input id="r5cons" type="text" value="0" required data-parsley-type="integer">
                 <label for="r5">Restriccion 5:</label>
             </div>
             <p align="center">
@@ -62,6 +116,7 @@
                 </p>
 
             </form>
+            
     <!--**********************************Fin del formulario*******************************-->            
                 <div class="results blue darken-1 res-ag toHide"></div>
                 
