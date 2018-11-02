@@ -5,13 +5,18 @@ var sumaTotal = 0;
 var fitnessAcumulado = 0;
 var datosGeneraciones = [];
 
+var r1 = [0,0,0,0,"",0] //a,b,c,d, <=>, restriccion
+var r2 = [0,0,0,0,"",0]
+var r3 = [0,0,0,0,"",0]
+var r4 = [0,0,0,0,"",0]
+var r5 = [0,0,0,0,"",0]
 //Variables iniciales
 var pc = 0.70;
 var genes = 30; // numero de bits que utlizaremos 
 var pm = 0.0555;
 var poblacionInicial = 50;
 var generaciones = 30;
-
+var x = "poblacion"
 $(document).ready(function(){
     $('form').submit(function(){
         return false;
@@ -23,10 +28,12 @@ $(document).ready(function(){
 function evoluciona(){
 
     poblacionInicial 	= $('#poblacion').val();
-    pc 					= $('#cruzamiento').val();
-    pm 					= $('#mutacion').val();
     generaciones 		= $('#generaciones').val();
+    
     iniciaPoblacion();
+    restricciones();
+    
+    document.writeln("la poblacion inicial es de" + poblacionInicial)
 
 }
 
@@ -47,12 +54,59 @@ function iniciaPoblacion(){
         poblacion.push(objetoInicial);
     }
     poblacionAlInicio = poblacion; //Guarda la poblacion al inicio para comparar.
-    console.log(poblacion);
+    r1 = restricciones(1);
+    r2 = restricciones(2);
+    r3 = restricciones(3);
+    r4 = restricciones(4);
+    r5 = restricciones(5);
+    
+    // imprimimos que si se guardan los valores de las restricciones en los arreglos
+        for (var i = 0; i < r1.length; i++)
+        document.writeln(r1[i]+"<br>")
+        
+        for (var i = 0; i < r2.length; i++)
+        document.writeln(r2[i]+"<br>")
+        
+        for (var i = 0; i < r3.length; i++)
+        document.writeln(r3[i]+"<br>")
+        
+        for (var i = 0; i < r4.length; i++)
+        document.writeln(r4[i]+"<br>")
+        
+        for (var i = 0; i < r5.length; i++)
+        document.writeln(r5[i]+"<br>")
+            
 }
 
+//guarda las Restricciones en arreglos:
+function restricciones(n){
+    var r = [0,0,0,0,"",0]
+    var letra = ["a","b","c","d","s","cons"]
+    if (n == 1 ){
+        for (var i = 0; i < 6; i++)
+        r[i] = $('#r1'+letra[i]+'').val();
+    }
+    if (n == 2) {
+        for (var i = 0; i < 6; i++)
+        r[i] = $('#r2'+letra[i]+'').val();
+    }
+    if (n == 3) {
+        for (var i = 0; i < 6; i++) 
+        r[i] = $('#r3'+letra[i]+'').val();
+    }
+    if (n == 4) {
+        for (var i = 0; i < 6; i++)
+        r[i] = $('#r4'+letra[i]+'').val();
+    }
+    if (n == 5) {
+        for (var i = 0; i < 6; i++)
+            r[i] = $('#r5'+letra[i]+'').val();
+    }
+    
+    return r;
 
-/*Evalua la población asignado su calificacion(Fitness)*/
 
+}
 
 
 //Probabilidad de selección
