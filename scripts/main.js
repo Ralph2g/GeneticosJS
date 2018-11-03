@@ -125,7 +125,14 @@ function numMJ()
     var aj;
     var n;
     var res;
-
+    var resf;
     res=( Math.log(bj-aj)*( Math.pow(10,n) ))/Math.log(2);
-    return res;
+    resf=Math.ceil(res);//Valor Techo
+    return resf;
+}
+
+/*Funcion de valor para Xi*/
+function numXi()
+{
+    
 }
