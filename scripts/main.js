@@ -78,7 +78,7 @@ function iniciaPoblacion(){
             
 }
 
-//guarda las Restricciones en arreglos:
+//guarda las Restricciones en arreglos: giTnoy7n
 function restricciones(n){
     var r = [0,0,0,0,"",0]
     var letra = ["a","b","c","d","s","cons"]
