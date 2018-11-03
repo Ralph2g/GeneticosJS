@@ -54,7 +54,6 @@ function iniciaPoblacion(){
         poblacion.push(objetoInicial);
     }
     poblacionAlInicio = poblacion; //Guarda la poblacion al inicio para comparar.
-//Guardamos todas las restricciones en arreglos  
     r1 = restricciones(1);
     r2 = restricciones(2);
     r3 = restricciones(3);
@@ -132,8 +131,22 @@ function numMJ()
     return resf;
 }
 
+/*Funcion convertidora binario a decimal*/
+function conv()
+{
+    var binario;
+    var decimal=parseInt(binario,2);
+    return decimal;
+}
+
 /*Funcion de valor para Xi*/
 function numXi()
 {
-    
+    var aj;
+    var decimal;
+    var bj;
+    var mj;
+    var Xn;
+    Xn=aj+decimal( (bj-aj)/((Math.pow(2,mj))-1) );
+    return Xn;
 }
