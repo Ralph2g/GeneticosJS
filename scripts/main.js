@@ -150,3 +150,18 @@ function numXi()
     Xn=aj+decimal( (bj-aj)/((Math.pow(2,mj))-1) );
     return Xn;
 }
+
+/*Funcion CrearCromosoma*/
+function creaC()
+{
+    var vec=[];
+    /*Donce n es el valor de bits que tendra cada cromosoma */
+    for(var i=0; i<n; i++)
+    {
+        num=Math.random;
+
+        vec.push(num);
+    }
+
+
+} 
