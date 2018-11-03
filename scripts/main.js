@@ -54,6 +54,7 @@ function iniciaPoblacion(){
         poblacion.push(objetoInicial);
     }
     poblacionAlInicio = poblacion; //Guarda la poblacion al inicio para comparar.
+//Guardamos todas las restricciones en arreglos  
     r1 = restricciones(1);
     r2 = restricciones(2);
     r3 = restricciones(3);
