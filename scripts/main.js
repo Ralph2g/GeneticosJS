@@ -73,7 +73,16 @@ function iniciaPoblacion(){
         var objetoInicial = {
             cromosomaindice:0,
             cromosomaArray:[],
-            cromosomaValor:0
+            cromosomaValor:0,
+            cromosomaArrayX:[],
+            cromosomaArrayY:[],
+            cromosomaArrayZ:[],
+            cromosomaArrayW:[],
+            cromosomaValorX:0,
+            cromosomaValorY:0,
+            cromosomaValorZ:0,
+            cromosomaValorW:0,
+            
         };
         objetoInicial.cromosomaindice = i+1;
         
