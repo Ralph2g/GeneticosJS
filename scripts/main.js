@@ -139,6 +139,24 @@ function conv()
     return decimal;
 }
 
+/*Funcion CrearCromosoma*/
+function creaC()
+{
+    var vec=[];
+    /*Donce n es el valor de bits que tendra cada cromosoma */
+    for(var i=0; i<n; i++)
+    {
+        num=Math.random;
+        if(num>=0.5)
+        {
+            num=1;
+        }else{
+            num=0;
+        }
+        vec.push(num);
+    }
+} 
+
 /*Funcion de valor para Xi*/
 function numXi()
 {
@@ -150,18 +168,3 @@ function numXi()
     Xn=aj+decimal( (bj-aj)/((Math.pow(2,mj))-1) );
     return Xn;
 }
-
-/*Funcion CrearCromosoma*/
-function creaC()
-{
-    var vec=[];
-    /*Donce n es el valor de bits que tendra cada cromosoma */
-    for(var i=0; i<n; i++)
-    {
-        num=Math.random;
-
-        vec.push(num);
-    }
-
-
-} 
