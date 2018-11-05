@@ -2,7 +2,6 @@ var poblacion = [];
 var poblacionAlInicio = [];
 var i,j;
 var sumaTotal = 0;
-var fitnessAcumulado = 0;
 var datosGeneraciones = [];
 //restricciones
 var r1 = [0,0,0,0,"",0]; //a,b,c,d, <=>, restriccion
@@ -62,11 +61,6 @@ function evoluciona(){
     
     iniciaPoblacion();
     
-    document.writeln("la poblacion inicial es de" + poblacionInicial)
-    document.writeln(mjX + " "+ mjY + " " + mjZ + " " +mjW) 
-    console.log(poblacionInicial);
-    console.log(poblacion);
-    console.log(mjZ);
     
 }
 
@@ -78,20 +72,21 @@ function iniciaPoblacion(){
         
         var objetoInicial = {
             cromosomaindice:0,
-            cromosomaArray:[]
+            cromosomaArray:[],
+            cromosomaValor:0
         };
-        objetoInicial.cromosomaindice = i;
+        objetoInicial.cromosomaindice = i+1;
         
         for(j=0;j<genes;j++){
             var aleatorio = numeroAleatorio();
             objetoInicial.cromosomaArray.push(aleatorio);
         }
-        poblacion.push(objetoInicial);
+        objetoInicial.cromosomaValor = parseInt(objetoInicial.cromosomaArray.join(""),2);// convertimos el binario de la cadena a decimal
+        poblacion.push(objetoInicial);//incluimos a el individuo en nuestra poblacion
     }
     poblacionAlInicio = poblacion; //Guarda la poblacion al inicio para comparar.
     
 }
-
 
 //guarda las Restricciones en arreglos: giTnoy7n
 function restricciones(n){
@@ -138,43 +133,26 @@ function rangos(elem,r1,r2,r3,r4,r5){
             break;
         case 4:
             return elem = [0,0]
-            break;
-
-            
+            break;        
     }
-    
 }
 
 /*Funcion que saca el valor MJ de las variables */
 function numMJ(aj,bj,n)
 {
     var resultado;
-    if (aj == 0 && bj == 0) {
-        return resultado = 0
-    }else {
-        
+    if (aj == 0 && bj == 0) 
+        return resultado = 0;
+    else {
     resultado = Math.ceil( Math.log((bj-aj)*( Math.pow(10,n) ))/Math.log(2));//valor techo
     return resultado;
     }
 }
-
-
 //Genera un número aleatorio.
 function numeroAleatorio(){
     var numero = Math.round(Math.random());
     return numero;
 }
-
-
-/*Funcion convertidora binario a decimal*/
-function conv()
-{
-    var binario;
-    var decimal=parseInt(binario,2);
-    return decimal;
-}
-
-
 
 /*Funcion de valor para Xi*/
 function numXi()
