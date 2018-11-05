@@ -55,16 +55,18 @@ function evoluciona(){
     // obtenemos los tamaños de cromosomas de cada variable    
     mjX = numMJ(rangoX[0],rangoX[1],1);//enviamos limite inf, limite sup, precision de bit    
     mjY = numMJ(rangoY[0],rangoY[1],1);//enviamos limite inf, limite sup, precision de bit
-    mjZ = numMJ(rangoZ[0],rangoZ[1],1);//enviamos limite inf, limite sup, precision de bit
+    mjZ = numMJ(rangoZ[0],rangoZ[1],4);//enviamos limite inf, limite sup, precision de bit
     mjW = numMJ(rangoW[0],rangoW[1],1);//enviamos limite inf, limite sup, precision de bit
         
-
+    genes = mjX + mjY + mjZ + mjW; // definimos el tamaño del vector
     
     iniciaPoblacion();
     
     document.writeln("la poblacion inicial es de" + poblacionInicial)
-    document.writeln(mjX + " "+ mjY)
+    document.writeln(mjX + " "+ mjY + " " + mjZ + " " +mjW) 
     console.log(poblacionInicial);
+    console.log(poblacion);
+    console.log(mjZ);
     
 }
 
@@ -122,32 +124,38 @@ function restricciones(n){
 function rangos(elem,r1,r2,r3,r4,r5){
     
     switch (elem) {
-        case elem:1
+        case 1:
             
             return elem = [0,4]
-            
-        case elem:2
+            break;
+        case 2:
             
             return elem = [2,8]
-        case elem:3
+            break;
+        case 3:
             
-            return elem = [0,130]
-        case elem:4
-            return elem = [0,10]
-            
+            return elem = [0,0]
+            break;
+        case 4:
+            return elem = [0,0]
+            break;
 
             
     }
     
-    
 }
+
 /*Funcion que saca el valor MJ de las variables */
 function numMJ(aj,bj,n)
 {
     var resultado;
-    //resultado = Math.ceil(( Math.log(bj-aj)*( Math.pow(10,n) ))/Math.log(2));//Valor Techo
-    resultado = Math.ceil( Math.log((bj-aj)*( Math.pow(10,n) ))/Math.log(2))
+    if (aj == 0 && bj == 0) {
+        return resultado = 0
+    }else {
+        
+    resultado = Math.ceil( Math.log((bj-aj)*( Math.pow(10,n) ))/Math.log(2));//valor techo
     return resultado;
+    }
 }
 
 
@@ -167,23 +175,6 @@ function conv()
 }
 
 
-/*Funcion CrearCromosoma*/
-function creaC()
-{
-    var vec=[];
-    /*Donce n es el valor de bits que tendra cada cromosoma */
-    for(var i=0; i<n; i++)
-    {
-        num=Math.random;
-        if(num>=0.5)
-        {
-            num=1;
-        }else{
-            num=0;
-        }
-        vec.push(num);
-    }
-} 
 
 /*Funcion de valor para Xi*/
 function numXi()
@@ -196,8 +187,6 @@ function numXi()
     Xn=aj+decimal( (bj-aj)/((Math.pow(2,mj))-1) );
     return Xn;
 }
-
-
 
 
 // imprimimos que si se guardan los valores de las restricciones en los arreglos 
