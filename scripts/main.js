@@ -157,7 +157,7 @@ function restricciones(n){
 /*Ahora si es rangos */
 function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
 
-    //var rx=[];
+    //var rx=[]; objetoInicial.cromosomaArray.push(aleatorio);
     rx.push(r1[5]/r1[0]);
     rx.push(r2[5]/r2[0]);
     rx.push(r3[5]/r3[0]);
@@ -165,6 +165,7 @@ function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
     rx.push(r5[5]/r5[0]);
     rangoX = Math.max(...rx);
     console.log(rangoX);
+    console.log(typeof(rx));
 
     var ry=[];
     ry.push(r1[5]/r1[1]);
