@@ -99,7 +99,7 @@ function iniciaPoblacion(){
                 var aleatorio = numeroAleatorio();
                 objetoInicial.cromosomaArray.push(aleatorio);
             }
-            objetoInicial.cromosomaValor = parseFloat(objetoInicial.cromosomaArray.join(""),2);// convertimos el binario de la cadena a decimal
+            objetoInicial.cromosomaValor = parseFloat(parseInt(objetoInicial.cromosomaArray.join(""),2));// convertimos el binario de la cadena a decimal
             // Cortamos los arreglos en los tamaños correspondientes
             objetoInicial.cromosomaArrayX = objetoInicial.cromosomaArray.slice(0,mjX);//PRIMERO QUE IMPRIME, UNO ANTES DEL QUE IMPRIME
             objetoInicial.cromosomaArrayY = objetoInicial.cromosomaArray.slice(mjX,mjY+mjX);
@@ -198,13 +198,15 @@ function rangos(){
     if (restriccionValida(r5)) 
         dividirValores(r5);
     
-    rangoX = [0,Math.max(...rx)];
+    
+    rangoX = [0,infinito(Math.max(...rx))];
 
-    rangoY = [0,Math.max(...ry)];
+    rangoY = [0,infinito(Math.max(...ry))];
 
-    rangoZ = [0,Math.max(...rz)];
+    rangoZ = [0,infinito(Math.max(...rz))];
 
-    rangoW = [0,Math.max(...rw)];
+    rangoW = [0,infinito(Math.max(...rw))];
+    console.log(typeof(rangoW[1]));
 
 }
 
@@ -229,6 +231,15 @@ function dividirValores(res){
         
         console.log(res);
         return 
+}
+function infinito(number){
+    
+    if (isFinite(number)) {
+        
+        return number;
+    }
+    else 
+        return 0;
 }
 /*Funcion que saca el valor MJ de las variables */
 function numMJ(aj,bj,n)
@@ -260,7 +271,7 @@ function numXi()
     return Xn;
 }
 function valArreglo(arreglo){
-    var numero = parseFloat(arreglo.join(""),2);
+    var numero = parseFloat(parseInt(arreglo.join(""),2));
     if(isNaN(numero))
         return null;
     else 
