@@ -47,10 +47,10 @@ function evoluciona(){
     
     //creamos los rangos de cada una de las varibles}
     
-    rangoX = rangos(1,r1,r2,r3,r4)
-    rangoY = rangos(2,r1,r2,r3,r4)
-    rangoZ = rangos(3,r1,r2,r3,r4)
-    rangoW = rangos(4,r1,r2,r3,r4) 
+    rangoX = rangos(1,r1,r2,r3,r4,r5)
+    rangoY = rangos(2,r1,r2,r3,r4,r5)
+    rangoZ = rangos(3,r1,r2,r3,r4,r5)
+    rangoW = rangos(4,r1,r2,r3,r4,r5) 
     // obtenemos los tamaños de cromosomas de cada variable    
     mjX = numMJ(rangoX[0],rangoX[1],1);//enviamos limite inf, limite sup, precision de bit    
     mjY = numMJ(rangoY[0],rangoY[1],1);//enviamos limite inf, limite sup, precision de bit
