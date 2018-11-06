@@ -212,14 +212,6 @@ function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
     rangoW = Math.max(...rw);
 
     console.log(rangoW);    
-*/
-rangoX = [0,4];
-
-rangoY = [2,8];
- 
-rangoZ = [0,0];
- 
-rangoW = [0,0];
 
 }
 
@@ -263,7 +255,7 @@ function valArreglo(arreglo){
 function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
 
     //vamos a utilizar las restricciones gg
-    
+    return true;
     
     
 }
