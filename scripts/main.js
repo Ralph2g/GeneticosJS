@@ -60,7 +60,7 @@ function evoluciona(){
     genes = mjX + mjY + mjZ + mjW; // definimos el tamaño del vector
     
     iniciaPoblacion();
-    
+    console.log(poblacion);
     
 }
 
