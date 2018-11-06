@@ -284,11 +284,6 @@ function valArreglo(arreglo){
 }
 //para que el cromosoma sea aceptado tiene que pasar por todas las validaciones y parobaciones 
 function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
-
-<<<<<<< HEAD
-
-    return true;    
-=======
     var aprobacion1 = true;
     var aprobacion2 = true;
     var aprobacion3 = true;
@@ -347,7 +342,6 @@ function evalua(cromoX,cromoY,cromoZ,cromoW,r){
     else {
         return false;
     }
->>>>>>> 88c4c73c5ce30a298469394b103666a32cdd3619
 }
 
 function muta()
