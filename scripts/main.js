@@ -4,6 +4,7 @@ var i,j;
 var sumaTotal = 0;
 var datosGeneraciones = [];
 var numA;
+var acumulado = 0;
 //restricciones
 var r1 = []; //a,b,c,d, <=>, restriccion
 var r2 = [];
@@ -90,8 +91,7 @@ function iniciaPoblacion(){
             cromosomaValorY:0,
             cromosomaValorZ:0,
             cromosomaValorW:0,
-            cromosomaZ:0,
-            
+            cromosomaZ:0
         };
         objetoInicial.cromosomaindice = i+1;
             var valido = false;
@@ -115,8 +115,9 @@ function iniciaPoblacion(){
             
             if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaArrayZ,objetoInicial.cromosomaArrayW)){
                 console.log("CIUDADANO VALIDO");
-                valido = true;
             
+            objetoInicial.cromosomaZ = evaluaZ(objetoInicial.cromosomaValoX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW);
+                valido = true;
             }
             
         
