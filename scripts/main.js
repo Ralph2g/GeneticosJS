@@ -156,7 +156,6 @@ function restricciones(n){
 
 /*Ahora si es rangos */
 function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
-/*
     //var rx=[]; objetoInicial.cromosomaArray.push(aleatorio);
     /* cualquiernumero/!=0 */
     if(r1[0] != 0)
@@ -179,39 +178,54 @@ function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
     {
         rx.push(r5[5]/r5[0]);
     }
-    
     rangoX = Math.max(...rx);
     console.log(rangoX);
     console.log(typeof(rx));
 
-    var ry=[];
-    ry.push(r1[5]/r1[1]);
-    ry.push(r2[5]/r2[1]);
-    ry.push(r3[5]/r3[1]);
-    ry.push(r4[5]/r4[1]);
-    ry.push(r5[5]/r5[1]);
+    //var ry=[];
+    if(r1[1] != 0)
+        ry.push(r1[5]/r1[1]);
+    if(r2[1] != 0)
+        ry.push(r2[5]/r2[1]);
+    if(r3[1] != 0)
+        ry.push(r3[5]/r3[1]);
+    if(r4[1] != 0)
+        ry.push(r4[5]/r4[1]);
+    if(r5[1] != 0)
+        ry.push(r5[5]/r5[1]);
+
     rangoY = Math.max(...ry);
     console.log(rangoY);
     
     //var rz=[];
-    rz.push(r1[5]/r1[2]);
-    rz.push(r2[5]/r2[2]);
-    rz.push(r2[5]/r2[2]);
-    rz.push(r3[5]/r3[2]);
-    rz.push(r4[5]/r4[2]);
-    rz.push(r5[5]/r5[2]);
+    if(r1[2] != 0)
+        rz.push(r1[5]/r1[2]);
+    if(r2[2] != 0)
+        rz.push(r2[5]/r2[2]);
+    if(r3[2] != 0)
+        rz.push(r3[5]/r3[2]);
+    if(r4[2] != 0)
+        rz.push(r4[5]/r4[2]);
+    if(r5[2] != 0)
+        rz.push(r5[5]/r5[2]);
+
     rangoZ = Math.max(...rz);
     console.log(rangoZ);
 
     //var rw=[];//rango para w
-    rw.push(r1[5]/r1[3]);
-    rw.push(r2[5]/r2[3]);
-    rw.push(r3[5]/r3[3]);
-    rw.push(r4[5]/r4[3]);
-    rw.push(r5[5]/r5[3]);
-    rangoW = Math.max(...rw);
+    if(r1[3] != 0)
+        rw.push(r1[5]/r1[3]);
+    if(r2[3] != 0)
+        rw.push(r2[5]/r2[3]);
+    if(r3[3] != 0)
+        rw.push(r3[5]/r3[3]);
+    if(r4[3] != 0)
+        rw.push(r4[5]/r4[3]);
+    if(r5[3] != 0)
+        rw.push(r5[5]/r5[3]);
 
-    console.log(rangoW);    
+    rangoW = Math.max(...rw);
+    console.log(rangoW);   
 
 }
 
