@@ -5,6 +5,7 @@ var sumaTotal = 0;
 var datosGeneraciones = [];
 var numA;
 var ale01;//numero aleatorio entre 0 y 1
+var acumulado = 0;
 /*Variables globales de FO */
 var vx= 0;
 var vy= 0;
@@ -94,7 +95,7 @@ function iniciaPoblacion(){
             cromosomaValorY:0,
             cromosomaValorZ:0,
             cromosomaValorW:0,
-            
+            cromosomaZ:0
         };
         objetoInicial.cromosomaindice = i+1;
             var valido = false;
@@ -118,6 +119,8 @@ function iniciaPoblacion(){
             
             if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaArrayZ,objetoInicial.cromosomaArrayW)){
                 console.log("CIUDADANO VALIDO");
+            
+            objetoInicial.cromosomaZ = evaluaZ(objetoInicial.cromosomaValoX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW);
                 valido = true;
             }
         
@@ -371,7 +374,7 @@ function valoresZ()
     vw= parseFloat( $('#fZd').val() );
     vcons= parseFloat( $('#fZcons').val() );
 }
-
+function evaluaZ
 //function evalua
 
 /*Funcion aleatorio entre 0 y 1 */
