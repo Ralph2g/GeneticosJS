@@ -156,7 +156,7 @@ function restricciones(n){
 
 /*Ahora si es rangos */
 function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
-
+/*
     //var rx=[]; objetoInicial.cromosomaArray.push(aleatorio);
     rx.push(r1[5]/r1[0]);
     rx.push(r2[5]/r2[0]);
@@ -195,6 +195,14 @@ function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
     rangoW = Math.max(...rw);
 
     console.log(rangoW);    
+*/
+rangoX = [0,4];
+
+rangoY = [2,8];
+ 
+rangoZ = [0,0];
+ 
+rangoW = [0,0];
 
 }
 
@@ -230,13 +238,15 @@ function numXi()
 function valArreglo(arreglo){
     var numero = parseInt(arreglo.join(""),2);
     if(isNaN(numero))
-        return 0;
+        return null;
     else 
         return numero
 }
 
 function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
-return true;
+
+    //vamos a utilizar las restricciones gg
+    
     
     
 }
