@@ -374,6 +374,7 @@ function valoresZ()
     vw= parseFloat( $('#fZd').val() );
     vcons= parseFloat( $('#fZcons').val() );
 }
+<<<<<<< HEAD
 function evaluaZ(valx,valy,valz,valw){
     x = 0;
     y = 0;
@@ -394,13 +395,24 @@ function evaluaZ(valx,valy,valz,valw){
     console.log(z);
     console.log(w);
     return (x*vx+y*vy+z*vz+w*vw);
+=======
+function evaluaZ()
+{
+    
+>>>>>>> 9909c3be331951b5a60f630f26dbb9f0532fd1a9
 }
 //function evalua
 
 /*Funcion aleatorio entre 0 y 1 */
 function aleatorio01()
 {
-    ale01=1;
+    ale01=Math.random().toFixed(2);
+    console.log(ale01);
+}
+/*Funcion que compara los vectores que aparecen dentro del rango */
+function comparaVec()
+{
+
 }
 
 // imprimimos que si se guardan los valores de las restricciones en los arreglos 
