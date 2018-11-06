@@ -78,6 +78,7 @@ function iniciaPoblacion(){
     poblacion = [];
     for(i=0;i<poblacionInicial;i++){
         
+        do {
         var objetoInicial = {
             cromosomaindice:0,
             cromosomaArray:[],
@@ -93,7 +94,6 @@ function iniciaPoblacion(){
             
         };
         objetoInicial.cromosomaindice = i+1;
-        do {
             var valido = false;
             for(j=0;j<genes;j++){
                 var aleatorio = numeroAleatorio();
@@ -113,8 +113,10 @@ function iniciaPoblacion(){
             
             
             
-            if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaArrayZ,objetoInicial.cromosomaArrayW))
+            if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaArrayZ,objetoInicial.cromosomaArrayW)){
+                console.log("CIUDADANO VALIDO");
                 valido = true;
+            }
         
         }while (valido == false)// fin del while
         
@@ -270,6 +272,7 @@ function numXi()
     Xn=aj+decimal( (bj-aj)/((Math.pow(2,mj))-1) );
     return Xn;
 }
+//valida el arreglo para que sepamos cuales usaremos
 function valArreglo(arreglo){
     var numero = parseFloat(parseInt(arreglo.join(""),2));
     if(isNaN(numero))
@@ -277,37 +280,67 @@ function valArreglo(arreglo){
     else 
         return numero
 }
-
+//para que el cromosoma sea aceptado tiene que pasar por todas las validaciones y parobaciones 
 function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
 
-    //Utilizando las restricciones
-    /*2^(mj-1)<=(bj-aj)10^n<=(2^(mj))-1 */
-    /*Obtenemos cada valor para x  */
-    var v1x=Math.pow(2, (mj-1) );
-    var v2x=(bj-aj)*( Math.pow(10,n) );
-    var v3x=(Math.pow(2,mj))-1;
-    /*Funcionara? */
-    if(v1x <= v2x && v2x <= v3x ) 
-    {
-        return;
+    var aprobacion1 = true;
+    var aprobacion2 = true;
+    var aprobacion3 = true;
+    var aprobacion4 = true;
+    var aprobacion5 = true;
+    
+    
+    if(restriccionValida(r1)){
+        aprobacion1 = evalua(cromoX,cromoY,cromoZ,cromoW,r1)
+        //console.log("APROBO RESTRICCION 1");
+    }
+    
+    if (restriccionValida(r2)) {
+        aprobacion2 = evalua(cromoX,cromoY,cromoZ,cromoW,r2)
+        //console.log("APROBO LA RESTRICCION 2");
+    }
+    if (restriccionValida(r3)) {
+        aprobacion3 = evalua(cromoX,cromoY,cromoZ,cromoW,r3)
+        //console.log("APROBO LA RESTRICCION 3");
+    }
+    if (restriccionValida(r4)) {
+        aprobacion4 = evalua(cromoX,cromoY,cromoZ,cromoW,r4)
+        //console.log("APROBO RESTRICCION 4");
+        console.log(aprobacion4);
+        
+    }
+    if (restriccionValida(r5)) {
+        aprobacion5 = evalua(cromoX,cromoY,cromoZ,cromoW,r5)
+        console.log("APROBO RESTRICCION 5");
+        
     }
 
-    /*Obtenemos cada valor para y  */
-    var v1y=Math.pow(2, (mj-1) );
-    var v2y=(bj-aj)*( Math.pow(10,n) );
-    var v3y=(Math.pow(2,mj))-1;
-    /*Obtenemos cada valor para z  */
-    var v1z=Math.pow(2, (mj-1) );
-    var v2z=(bj-aj)*( Math.pow(10,n) );
-    var v3z=(Math.pow(2,mj))-1;
-    /*Obtenemos cada valor para w  */
-    var v1w=Math.pow(2, (mj-1) );
-    var v2w=(bj-aj)*( Math.pow(10,n) );
-    var v3w=(Math.pow(2,mj))-1;
-
-
-
-    return true;    
+    if (aprobacion1 == true && aprobacion2 == true && aprobacion3 == true && aprobacion4 == true && aprobacion5 == true)
+        return true;    
+        else 
+        return false;
+}
+//evaluamos el cromosoma en cada uno de las restricciones 
+function evalua(cromoX,cromoY,cromoZ,cromoW,r){
+    //console.log((cromoX*r[0]+cromoY*r[1]+cromoZ*r[2]+cromoW*[3]));
+    if (r[4] == "<=") {
+        if ( (cromoX*r[0]+cromoY*r[1]+cromoZ*r[2]+cromoW*[3]) <= r[5] ){
+            return true;
+        }
+            else
+            return false;
+    }
+    else if (r[4] == ">="){
+        if ( (cromoX*r[0]+cromoY*r[1]+cromoZ*r[2]+cromoW*[3]) >= r[5] ){
+            
+            return true;
+        }
+            else
+            return false;
+    }
+    else {
+        return false;
+    }
 }
 
 
