@@ -59,6 +59,8 @@ function evoluciona(){
     
     iniciaPoblacion();
     console.log(poblacion);
+
+
     
 }
 
@@ -124,8 +126,6 @@ function restricciones(n){
 
 /*Ahora si es rangos */
 function rangos(r1,r2,r3,r4,r5){
-    
-
 
     var rx=[];
     rx.push(r1[5]/r1[0]);
@@ -134,6 +134,7 @@ function rangos(r1,r2,r3,r4,r5){
     rx.push(r4[5]/r4[0]);
     rx.push(r5[5]/r5[0]);
     rangoX = Math.max(...rx);
+    console.log(rangoX);
     
     var ry=[];
     ry.push(r1[5]/r1[1]);
@@ -142,6 +143,7 @@ function rangos(r1,r2,r3,r4,r5){
     ry.push(r4[5]/r4[1]);
     ry.push(r5[5]/r5[1]);
     rangoY = Math.max(...ry);
+    console.log(rangoY);
     
     var rz=[];
     rz.push(r1[5]/r1[2]);
@@ -151,6 +153,7 @@ function rangos(r1,r2,r3,r4,r5){
     rz.push(r4[5]/r4[2]);
     rz.push(r5[5]/r5[2]);
     rangoZ = Math.max(...rz);
+    console.log(rangoZ);
 
     var rw=[];//rango para w
     rw.push(r1[5]/r1[3]);
@@ -159,6 +162,7 @@ function rangos(r1,r2,r3,r4,r5){
     rw.push(r4[5]/r4[3]);
     rw.push(r5[5]/r5[3]);
     rangoW = Math.max(...rw);
+    console.log(rangoW);
     
 }
 
