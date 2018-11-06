@@ -192,9 +192,7 @@ function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
     rw.push(r4[5]/r4[3]);
     rw.push(r5[5]/r5[3]);
     rangoW = Math.max(...rw);
-    console.log(rangoW);
->>>>>>> 6ecd07918986932cf815f62b52d8adac83df0957
-    
+    console.log(rangoW);    
 }
 
 /*Funcion que saca el valor MJ de las variables */
