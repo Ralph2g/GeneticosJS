@@ -310,6 +310,21 @@ function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
     return true;    
 }
 
+function muta(mjX,mjY,mjZ,mjW,cromosomaArray)
+{
+    /*Obteniendo el tamaño del vector */
+    var tamV=mjX+mjY+mjZ+mjW;
+    /*Generando el numero aleatorio entre 0 y el tamaño del vector */
+    var numA=Math.round(Math.random()*(tamV-1));
+
+    if(cromosomaArray[numA]==0)
+    {
+        cromosomaArray[numA]==1;
+    }else
+        cromosomaArray[numA]==0;
+        
+}
+
 
 
 
