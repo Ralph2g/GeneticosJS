@@ -416,16 +416,16 @@ function comparaVec(array,valor)
 
     if(i==0)
     {
-        //Compara con 0 y el siguiente 
-        if(0 < valor && array[i] >= valor)
+        //Compara con 0 y el actual 
+        if(0 < valor && array[i] > valor)
         {
             //dentro del rango
         }
     }else{
-        //Compara anterior y el siguiente 
-        if(array[i]>= valor && array[i+1] )
+        //Compara actual y el siguiente 
+        if(array[i] < valor && array[i+1] > valor)
         {
-
+            //dentro del rango
         }
     }
 
