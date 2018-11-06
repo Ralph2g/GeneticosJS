@@ -9,6 +9,11 @@ var r2 = [0,0,0,0,"",0];
 var r3 = [0,0,0,0,"",0];
 var r4 = [0,0,0,0,"",0];
 var r5 = [0,0,0,0,"",0];
+//
+var rx=[];
+var ry=[];
+var rz=[];
+var rw=[];
 //Rangos de las variables 
 var rangoX = [0,0];// rango de las variables
 var rangoY = [0,0];// rango de las variables
@@ -47,7 +52,7 @@ function evoluciona(){
     
     //creamos los rangos de cada una de las varibles}
     
-    rangos(r1,r2,r3,r4,r5)
+    rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw)
 
     // obtenemos los tamaños de cromosomas de cada variable    
     mjX = numMJ(rangoX[0],rangoX[1],1);//enviamos limite inf, limite sup, precision de bit    
@@ -128,31 +133,31 @@ function restricciones(n){
     var letra = ["a","b","c","d","s","cons"]
     if (n == 1 ){
         for (var i = 0; i < 6; i++)
-        r[i] = $('#r1'+letra[i]+'').val();
+        r[i] = parseInt( $('#r1'+letra[i]+'').val() );
     }
     if (n == 2) {
         for (var i = 0; i < 6; i++)
-        r[i] = $('#r2'+letra[i]+'').val();
+        r[i] = parseInt( $('#r2'+letra[i]+'').val() );
     }
     if (n == 3) {
         for (var i = 0; i < 6; i++) 
-        r[i] = $('#r3'+letra[i]+'').val();
+        r[i] = parseInt( $('#r3'+letra[i]+'').val() );
     }
     if (n == 4) {
         for (var i = 0; i < 6; i++)
-        r[i] = $('#r4'+letra[i]+'').val();
+        r[i] = parseInt( $('#r4'+letra[i]+'').val() );
     }
     if (n == 5) {
         for (var i = 0; i < 6; i++)
-            r[i] = $('#r5'+letra[i]+'').val();
+            r[i] = parseInt($('#r5'+letra[i]+'').val() );
     }
     return r;
 }
 
 /*Ahora si es rangos */
-function rangos(r1,r2,r3,r4,r5){
+function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
 
-    var rx=[];
+    //var rx=[];
     rx.push(r1[5]/r1[0]);
     rx.push(r2[5]/r2[0]);
     rx.push(r3[5]/r3[0]);
@@ -170,7 +175,7 @@ function rangos(r1,r2,r3,r4,r5){
     rangoY = Math.max(...ry);
     console.log(rangoY);
     
-    var rz=[];
+    //var rz=[];
     rz.push(r1[5]/r1[2]);
     rz.push(r2[5]/r2[2]);
     rz.push(r2[5]/r2[2]);
@@ -180,7 +185,7 @@ function rangos(r1,r2,r3,r4,r5){
     rangoZ = Math.max(...rz);
     console.log(rangoZ);
 
-    var rw=[];//rango para w
+    //var rw=[];//rango para w
     rw.push(r1[5]/r1[3]);
     rw.push(r2[5]/r2[3]);
     rw.push(r3[5]/r3[3]);
