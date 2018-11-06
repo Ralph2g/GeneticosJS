@@ -374,7 +374,27 @@ function valoresZ()
     vw= parseFloat( $('#fZd').val() );
     vcons= parseFloat( $('#fZcons').val() );
 }
-function evaluaZ
+function evaluaZ(valx,valy,valz,valw){
+    x = 0;
+    y = 0;
+    z = 0;
+    w = 0;
+    if (valx != null)
+        x=valx;
+    if(valy != null)
+        y= valy;
+    if(valz != null)
+        z= valz;
+    if(valw != null)
+        w= valw;
+    
+    console.log((x*vx+y*vy+z*vz+w*vw));
+    console.log(x);
+    console.log(y);
+    console.log(z);
+    console.log(w);
+    return (x*vx+y*vy+z*vz+w*vw);
+}
 //function evalua
 
 /*Funcion aleatorio entre 0 y 1 */
