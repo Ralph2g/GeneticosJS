@@ -52,10 +52,6 @@ function evoluciona(){
     r5 = restricciones(5);
     
     //creamos los rangos de cada una de las varibles}
-    console.log("r1");
-    console.log(r1);
-    console.log("r2");
-    console.log(r2);
     rangos()
 
     // obtenemos los tamaños de cromosomas de cada variable    
@@ -68,6 +64,7 @@ function evoluciona(){
     
     iniciaPoblacion();
     console.log(poblacion);
+    
     muta();
 
 
@@ -93,6 +90,7 @@ function iniciaPoblacion(){
             cromosomaValorY:0,
             cromosomaValorZ:0,
             cromosomaValorW:0,
+            cromosomaZ:0,
             
         };
         objetoInicial.cromosomaindice = i+1;
@@ -118,7 +116,9 @@ function iniciaPoblacion(){
             if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaArrayZ,objetoInicial.cromosomaArrayW)){
                 console.log("CIUDADANO VALIDO");
                 valido = true;
+            
             }
+            
         
         }while (valido == false)// fin del while
         
@@ -210,7 +210,6 @@ function rangos(){
     rangoZ = [0,infinito(Math.max(...rz))];
 
     rangoW = [0,infinito(Math.max(...rw))];
-    console.log(typeof(rangoW[1]));
 
 }
 
@@ -284,6 +283,10 @@ function valArreglo(arreglo){
 }
 //para que el cromosoma sea aceptado tiene que pasar por todas las validaciones y parobaciones 
 function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
+<<<<<<< HEAD
+=======
+
+>>>>>>> 33c0852be3f794037ffab3fc32e8c20f80301a08
     var aprobacion1 = true;
     var aprobacion2 = true;
     var aprobacion3 = true;
@@ -344,21 +347,19 @@ function evalua(cromoX,cromoY,cromoZ,cromoW,r){
     }
 }
 
-function muta()
+function muta(array)
 {
     /*Obteniendo el tamaño del vector */
     var tamV=mjX+mjY+mjZ+mjW;
-    console.log( typeof(tamV) );
-    console.log(  Math.round(Math.random()*(tamV-1)) );
     /*Generando el numero aleatorio entre 0 y el tamaño del vector */
     numA= parseInt( Math.round(Math.random()*(tamV-1)) );
-    console.log(numA);
-    /*
-    if(objetoInicial.cromosomaArray[numA]==0)
+
+    
+    if(array[numA]==0)
     {
-        objetoInicial.cromosomaArray[numA]==1;
+        array[numA]==1;
     }else
-        objetoInicial.cromosomaArray[numA]==0;*/
+        array[numA]==0;
         
 }
 
