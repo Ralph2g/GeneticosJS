@@ -160,16 +160,7 @@ function rangos(r1,r2,r3,r4,r5){
     rx.push(r5[5]/r5[0]);
     rangoX = Math.max(...rx);
     console.log(rangoX);
-    
-<<<<<<< HEAD
-    rangoX = [0,4];
-    
-    rangoY = [2,8];
-     
-    rangoZ = [0,0];
-     
-    rangoW = [0,0];
-=======
+
     var ry=[];
     ry.push(r1[5]/r1[1]);
     ry.push(r2[5]/r2[1]);
@@ -197,7 +188,6 @@ function rangos(r1,r2,r3,r4,r5){
     rw.push(r5[5]/r5[3]);
     rangoW = Math.max(...rw);
     console.log(rangoW);
->>>>>>> 6ecd07918986932cf815f62b52d8adac83df0957
     
 }
 
