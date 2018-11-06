@@ -400,7 +400,7 @@ function aleatorio01()
     return parseFloat(ale01=Math.random().toFixed(2));
 }
 /*Funcion que compara los vectores que aparecen dentro del rango */
-function comparaVec(array)
+function comparaVec(array,valor)
 {
     /*comparando los valores de %zac y #aleat01 y con los subindices
     y con el numero de vectores n*/
@@ -413,16 +413,16 @@ function comparaVec(array)
 
     if(i==0)
     {
-        //Compara con 0 y el siguiente 
-        if(0 >= valor && array[i+1] >= valor)
+        //Compara con 0 y el actual 
+        if(0 < valor && array[i] > valor)
         {
             //dentro del rango
         }
     }else{
-        //Compara anterior y el siguiente 
-        if(array[i]>= valor && array[i+1] )
+        //Compara actual y el siguiente 
+        if(array[i] < valor && array[i+1] > valor)
         {
-
+            //dentro del rango
         }
     }
 
