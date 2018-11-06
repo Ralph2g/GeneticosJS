@@ -99,7 +99,7 @@ function iniciaPoblacion(){
             cromosomaZ:0,
             cromosomazAcumulado:0,
             cromosomapAcumulado:0,
-            aleatorio:aleatorio01(),
+            aleatorio:0,
         };
         objetoInicial.cromosomaindice = i+1;
             var valido = false;
@@ -393,37 +393,6 @@ function evaluaZ(valx,valy,valz,valw){
     return (x*vx+y*vy+z*vz+w*vw+vcons);
 }
 //function evalua
-
-/*Funcion aleatorio entre 0 y 1 */
-function aleatorio01()
-{
-    return parseFloat(ale01=Math.random().toFixed(2));
-}
-/*Funcion que compara los vectores que aparecen dentro del rango */
-function comparaVec(array,valor)
-{
-    /*comparando los valores de %zac y #aleat01 y con los subindices
-    y con el numero de vectores n*/
-    array.forEach(comparaVec);
-
-    if(i==0)
-    {
-        //Compara con 0 y el actual 
-        if(0 < valor && array[i] > valor)
-        {
-            //dentro del rango
-            array[i]=narray[i];
-        }
-    }else{
-        //Compara actual y el siguiente 
-        if(array[i] < valor && array[i+1] > valor)
-        {
-            //dentro del rango
-        }
-    }
-
-}
-
 // imprimimos que si se guardan los valores de las restricciones en los arreglos 
 /*
     for (var i = 0; i < r1.length; i++)
