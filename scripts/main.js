@@ -4,7 +4,16 @@ var i,j;
 var sumaTotal = 0;
 var datosGeneraciones = [];
 var numA;
+<<<<<<< HEAD
 var acumulado = 0;
+=======
+/*Variables globales de FO */
+var vx= 0;
+var vy= 0;
+var vz= 0;
+var vw= 0;
+var vcons= 0;//valor constante de la funcion
+>>>>>>> 1c8b10065ade2ec4a25c06c366f5284952fb5c3a
 //restricciones
 var r1 = []; //a,b,c,d, <=>, restriccion
 var r2 = [];
@@ -88,7 +97,11 @@ function iniciaPoblacion(){
             cromosomaValorY:0,
             cromosomaValorZ:0,
             cromosomaValorW:0,
+<<<<<<< HEAD
             cromosomaZ:0
+=======
+            
+>>>>>>> 1c8b10065ade2ec4a25c06c366f5284952fb5c3a
         };
         objetoInicial.cromosomaindice = i+1;
             var valido = false;
@@ -112,8 +125,11 @@ function iniciaPoblacion(){
             
             if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaArrayZ,objetoInicial.cromosomaArrayW)){
                 console.log("CIUDADANO VALIDO");
+<<<<<<< HEAD
             
             objetoInicial.cromosomaZ = evaluaZ(objetoInicial.cromosomaValoX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW);
+=======
+>>>>>>> 1c8b10065ade2ec4a25c06c366f5284952fb5c3a
                 valido = true;
             }
         
@@ -367,7 +383,11 @@ function valoresZ()
     vw= parseFloat( $('#fZd').val() );
     vcons= parseFloat( $('#fZcons').val() );
 }
+<<<<<<< HEAD
 function evaluaZ
+=======
+
+>>>>>>> 1c8b10065ade2ec4a25c06c366f5284952fb5c3a
 //function evalua
 
 
