@@ -83,14 +83,39 @@ function iniciaPoblacion(){
             
         };
         objetoInicial.cromosomaindice = i+1;
+        do {
+            var valido = false;
+            for(j=0;j<genes;j++){
+                var aleatorio = numeroAleatorio();
+                objetoInicial.cromosomaArray.push(aleatorio);
+            }
+            objetoInicial.cromosomaValor = parseInt(objetoInicial.cromosomaArray.join(""),2);// convertimos el binario de la cadena a decimal
+            // Cortamos los arreglos en los tamaños correspondientes
+            objetoInicial.cromosomaArrayX = objetoInicial.cromosomaArray.slice(0,mjX);//PRIMERO QUE IMPRIME, UNO ANTES DEL QUE IMPRIME
+            objetoInicial.cromosomaArrayY = objetoInicial.cromosomaArray.slice(mjX,mjY+mjX);
+            objetoInicial.cromosomaArrayZ = objetoInicial.cromosomaArray.slice(mjX+mjY,mjZ+mjX+mjY);
+            objetoInicial.cromosomaArrayW = objetoInicial.cromosomaArray.slice(mjZ+mjX+mjY,mjZ+mjX+mjY+mjW);
+            
+            objetoInicial.cromosomaValorX = valArreglo(objetoInicial.cromosomaArrayX)
+            objetoInicial.cromosomaValorY = valArreglo(objetoInicial.cromosomaArrayY)
+            objetoInicial.cromosomaValorZ = valArreglo(objetoInicial.cromosomaArrayZ)
+            objetoInicial.cromosomaValorW = valArreglo(objetoInicial.cromosomaArrayW)
+            
+            
+            
+            if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaArrayZ,objetoInicial.cromosomaArrayW))
+                valido = true;
         
-        for(j=0;j<genes;j++){
-            var aleatorio = numeroAleatorio();
-            objetoInicial.cromosomaArray.push(aleatorio);
-        }
-        objetoInicial.cromosomaValor = parseInt(objetoInicial.cromosomaArray.join(""),2);// convertimos el binario de la cadena a decimal
+        }while (valido == false)// fin del while
+        
+
+        
+        
+        
         poblacion.push(objetoInicial);//incluimos a el individuo en nuestra poblacion
-    }
+        
+        
+    }// fin del for que genera poblacion individual
     poblacionAlInicio = poblacion; //Guarda la poblacion al inicio para comparar.
     
 }
@@ -125,13 +150,13 @@ function restricciones(n){
 /*Ahora si es rangos */
 function rangos(r1,r2,r3,r4,r5){
     
-    rangoX = 
+    rangoX = [0,4];
     
-    rangoY =
+    rangoY = [2,8];
      
-    rangoZ =
+    rangoZ = [0,0];
      
-    rangoW = 
+    rangoW = [0,0];
     
 }
 
@@ -152,6 +177,7 @@ function numeroAleatorio(){
     return numero;
 }
 
+
 /*Funcion de valor para Xi*/
 function numXi()
 {
@@ -163,6 +189,20 @@ function numXi()
     Xn=aj+decimal( (bj-aj)/((Math.pow(2,mj))-1) );
     return Xn;
 }
+function valArreglo(arreglo){
+    var numero = parseInt(arreglo.join(""),2);
+    if(isNaN(numero))
+        return 0;
+    else 
+        return numero
+}
+
+function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
+return true;
+    
+    
+}
+
 
 
 // imprimimos que si se guardan los valores de las restricciones en los arreglos 
