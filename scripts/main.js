@@ -409,17 +409,13 @@ function comparaVec(array,valor)
     y con el numero de vectores n*/
     array.forEach(comparaVec);
 
-    for(var i=0; i<n ;i++)
-    {
-
-    }
-
     if(i==0)
     {
         //Compara con 0 y el actual 
         if(0 < valor && array[i] > valor)
         {
             //dentro del rango
+            array[i]=narray[i];
         }
     }else{
         //Compara actual y el siguiente 
