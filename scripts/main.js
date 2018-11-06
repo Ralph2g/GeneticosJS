@@ -74,6 +74,8 @@ function evoluciona(){
     genes = mjX + mjY + mjZ + mjW; // definimos el tamaño del vector
     iniciaPoblacion();
     console.log(poblacion);
+    iteracion1()
+    iterarcionN(generaciones - 1)
     muta();
 }
 
@@ -360,12 +362,11 @@ function muta()
     /*Generando el numero aleatorio entre 0 y el tamaño del vector */
     numA= parseInt( Math.round(Math.random()*(tamV-1)) );
     console.log(numA);
-    /*
-    if(objetoInicial.cromosomaArray[numA]==0)
-    {
-        objetoInicial.cromosomaArray[numA]==1;
-    }else
-        objetoInicial.cromosomaArray[numA]==0;*/
+    
+    if(cromosoma==0)
+        return cromosoma=1;
+    else
+        return cromosoma=0;
         
 }
 
