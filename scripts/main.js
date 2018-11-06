@@ -4,6 +4,12 @@ var i,j;
 var sumaTotal = 0;
 var datosGeneraciones = [];
 var numA;
+/*Variables globales de FO */
+var vx= 0;
+var vy= 0;
+var vz= 0;
+var vw= 0;
+var vcons= 0;//valor constante de la funcion
 //restricciones
 var r1 = []; //a,b,c,d, <=>, restriccion
 var r2 = [];
@@ -39,7 +45,6 @@ $(document).ready(function(){
 
 /*Funcion que genera el algoritmo genetico*/
 function evoluciona(){
-
     poblacionInicial 	= parseFloat($('#poblacion').val());
     generaciones 		= parseFloat($('#generaciones').val());
     
@@ -52,23 +57,21 @@ function evoluciona(){
     r5 = restricciones(5);
     
     //creamos los rangos de cada una de las varibles}
+    console.log("r1");
+    console.log(r1);
+    console.log("r2");
+    console.log(r2);
     rangos()
 
     // obtenemos los tamaños de cromosomas de cada variable    
     mjX = numMJ(rangoX[0],rangoX[1],1);//enviamos limite inf, limite sup, precision de bit    
     mjY = numMJ(rangoY[0],rangoY[1],1);//enviamos limite inf, limite sup, precision de bit
     mjZ = numMJ(rangoZ[0],rangoZ[1],4);//enviamos limite inf, limite sup, precision de bit
-    mjW = numMJ(rangoW[0],rangoW[1],1);//enviamos limite inf, limite sup, precision de bit
-        
+    mjW = numMJ(rangoW[0],rangoW[1],1);//enviamos limite inf, limite sup, precision de bit    
     genes = mjX + mjY + mjZ + mjW; // definimos el tamaño del vector
-    
     iniciaPoblacion();
     console.log(poblacion);
-    
     muta();
-
-
-    
 }
 
 /*Funcion carga una población inicial para evolucionar*/
@@ -90,7 +93,6 @@ function iniciaPoblacion(){
             cromosomaValorY:0,
             cromosomaValorZ:0,
             cromosomaValorW:0,
-            cromosomaZ:0,
             
         };
         objetoInicial.cromosomaindice = i+1;
@@ -116,9 +118,7 @@ function iniciaPoblacion(){
             if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaArrayZ,objetoInicial.cromosomaArrayW)){
                 console.log("CIUDADANO VALIDO");
                 valido = true;
-            
             }
-            
         
         }while (valido == false)// fin del while
         
@@ -210,6 +210,7 @@ function rangos(){
     rangoZ = [0,infinito(Math.max(...rz))];
 
     rangoW = [0,infinito(Math.max(...rw))];
+    console.log(typeof(rangoW[1]));
 
 }
 
@@ -283,10 +284,6 @@ function valArreglo(arreglo){
 }
 //para que el cromosoma sea aceptado tiene que pasar por todas las validaciones y parobaciones 
 function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
-<<<<<<< HEAD
-=======
-
->>>>>>> 33c0852be3f794037ffab3fc32e8c20f80301a08
     var aprobacion1 = true;
     var aprobacion2 = true;
     var aprobacion3 = true;
@@ -347,22 +344,34 @@ function evalua(cromoX,cromoY,cromoZ,cromoW,r){
     }
 }
 
-function muta(array)
+function muta()
 {
     /*Obteniendo el tamaño del vector */
     var tamV=mjX+mjY+mjZ+mjW;
+    console.log( typeof(tamV) );
+    console.log(  Math.round(Math.random()*(tamV-1)) );
     /*Generando el numero aleatorio entre 0 y el tamaño del vector */
     numA= parseInt( Math.round(Math.random()*(tamV-1)) );
-
-    
-    if(array[numA]==0)
+    console.log(numA);
+    /*
+    if(objetoInicial.cromosomaArray[numA]==0)
     {
-        array[numA]==1;
+        objetoInicial.cromosomaArray[numA]==1;
     }else
-        array[numA]==0;
+        objetoInicial.cromosomaArray[numA]==0;*/
         
 }
 
+function valoresZ()
+{
+    vx= parseFloat( $('#fZa').val() );
+    vy= parseFloat( $('#fZb').val() );
+    vz= parseFloat( $('#fZc').val() );
+    vw= parseFloat( $('#fZd').val() );
+    vcons= parseFloat( $('#fZcons').val() );
+}
+
+//function evalua
 
 
 
