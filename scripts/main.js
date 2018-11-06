@@ -404,14 +404,32 @@ function aleatorio01()
     console.log(ale01);
 }
 /*Funcion que compara los vectores que aparecen dentro del rango */
-function comparaVec()
+function comparaVec(array)
 {
     /*comparando los valores de %zac y #aleat01 y con los subindices
     y con el numero de vectores n*/
-    for(var i=0; i<n ; i++)
+    array.forEach(comparaVec);
+
+    for(var i=0; i<n ;i++)
     {
 
     }
+
+    if(i==0)
+    {
+        //Compara con 0 y el siguiente 
+        if(0 >= valor && array[i+1] >= valor)
+        {
+            //dentro del rango
+        }
+    }else{
+        //Compara anterior y el siguiente 
+        if(array[i]>= valor && array[i+1] )
+        {
+
+        }
+    }
+
 }
 
 // imprimimos que si se guardan los valores de las restricciones en los arreglos 
