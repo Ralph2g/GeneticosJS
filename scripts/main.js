@@ -124,7 +124,7 @@ function restricciones(n){
     return r;
 }
 
-//
+/*Ahora si es rangos */
 function rangos(elem,r1,r2,r3,r4,r5){
     
     switch (elem) {
