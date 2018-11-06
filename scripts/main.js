@@ -50,7 +50,8 @@ function evoluciona(){
     poblacionInicial 	= parseFloat($('#poblacion').val());
     generaciones 		= parseFloat($('#generaciones').val());
     
-
+    //function valores de z
+    valoresZ();
     //guardamos las restricciones
     r1 = restricciones(1);
     r2 = restricciones(2);
@@ -95,7 +96,9 @@ function iniciaPoblacion(){
             cromosomaValorY:0,
             cromosomaValorZ:0,
             cromosomaValorW:0,
-            cromosomaZ:0
+            cromosomaZ:0,
+            cromosomazAcumulado:0,
+            aleatorio:aleatorio01(),
         };
         objetoInicial.cromosomaindice = i+1;
             var valido = false;
@@ -117,10 +120,10 @@ function iniciaPoblacion(){
             
             
             
-            if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaArrayZ,objetoInicial.cromosomaArrayW)){
+            if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW)){
                 console.log("CIUDADANO VALIDO");
             
-            objetoInicial.cromosomaZ = evaluaZ(objetoInicial.cromosomaValoX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW);
+            objetoInicial.cromosomaZ = evaluaZ(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW);
                 valido = true;
             }
         
@@ -374,7 +377,6 @@ function valoresZ()
     vw= parseFloat( $('#fZd').val() );
     vcons= parseFloat( $('#fZcons').val() );
 }
-<<<<<<< HEAD
 function evaluaZ(valx,valy,valz,valw){
     x = 0;
     y = 0;
@@ -390,24 +392,14 @@ function evaluaZ(valx,valy,valz,valw){
         w= valw;
     
     console.log((x*vx+y*vy+z*vz+w*vw));
-    console.log(x);
-    console.log(y);
-    console.log(z);
-    console.log(w);
-    return (x*vx+y*vy+z*vz+w*vw);
-=======
-function evaluaZ()
-{
-    
->>>>>>> 9909c3be331951b5a60f630f26dbb9f0532fd1a9
+    return (x*vx+y*vy+z*vz+w*vw+vcons);
 }
 //function evalua
 
 /*Funcion aleatorio entre 0 y 1 */
 function aleatorio01()
 {
-    ale01=Math.random().toFixed(2);
-    console.log(ale01);
+    return parseFloat(ale01=Math.random().toFixed(2));
 }
 /*Funcion que compara los vectores que aparecen dentro del rango */
 function comparaVec()
