@@ -280,10 +280,34 @@ function valArreglo(arreglo){
 
 function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
 
-    //vamos a utilizar las restricciones gg
-    return true;
-    
-    
+    //Utilizando las restricciones
+    /*2^(mj-1)<=(bj-aj)10^n<=(2^(mj))-1 */
+    /*Obtenemos cada valor para x  */
+    var v1x=Math.pow(2, (mj-1) );
+    var v2x=(bj-aj)*( Math.pow(10,n) );
+    var v3x=(Math.pow(2,mj))-1;
+    /*Funcionara? */
+    if(v1x <= v2x && v2x <= v3x ) 
+    {
+        return;
+    }
+
+    /*Obtenemos cada valor para y  */
+    var v1y=Math.pow(2, (mj-1) );
+    var v2y=(bj-aj)*( Math.pow(10,n) );
+    var v3y=(Math.pow(2,mj))-1;
+    /*Obtenemos cada valor para z  */
+    var v1z=Math.pow(2, (mj-1) );
+    var v2z=(bj-aj)*( Math.pow(10,n) );
+    var v3z=(Math.pow(2,mj))-1;
+    /*Obtenemos cada valor para w  */
+    var v1w=Math.pow(2, (mj-1) );
+    var v2w=(bj-aj)*( Math.pow(10,n) );
+    var v3w=(Math.pow(2,mj))-1;
+
+
+
+    return true;    
 }
 
 
