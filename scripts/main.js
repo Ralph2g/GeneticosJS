@@ -52,7 +52,7 @@ function evoluciona(){
     
     //creamos los rangos de cada una de las varibles}
     
-    rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw)
+    rangos(r1,r2,r3,r4,r5)
 
     // obtenemos los tamaños de cromosomas de cada variable    
     mjX = numMJ(rangoX[0],rangoX[1],1);//enviamos limite inf, limite sup, precision de bit    
@@ -155,9 +155,27 @@ function restricciones(n){
 }
 
 /*Ahora si es rangos */
-function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
+function rangos(r1,r2,r3,r4,r5){
     //var rx=[]; objetoInicial.cromosomaArray.push(aleatorio);
     /* cualquiernumero/!=0 */
+    
+    if (restriccionValida(r1)) {
+        dividirValores(r1)
+    }
+    
+    if (restriccionValida(r2)) {
+        
+    }
+    if (restriccionValida(r3)) {
+        
+    }
+    
+    if (restriccionValida(r4)) {
+        
+    }
+    if (restriccionValida(r5)) {
+        
+    }
     if(r1[0] != 0)
     {
         rx.push(r1[5]/r1[0]);
@@ -229,6 +247,13 @@ function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
 
 }
 
+function restriccionValida(res){
+    if (res[0] == 0 && res[1] == 0 && res[2] == 0 && res[3] == 0)
+    return false;
+}
+function dividirValores(res){
+    return true;
+}
 /*Funcion que saca el valor MJ de las variables */
 function numMJ(aj,bj,n)
 {
@@ -273,6 +298,7 @@ function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
     
     
 }
+
 
 
 
