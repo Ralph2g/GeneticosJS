@@ -158,11 +158,28 @@ function restricciones(n){
 function rangos(r1,r2,r3,r4,r5,rx,ry,rz,rw){
 /*
     //var rx=[]; objetoInicial.cromosomaArray.push(aleatorio);
-    rx.push(r1[5]/r1[0]);
-    rx.push(r2[5]/r2[0]);
-    rx.push(r3[5]/r3[0]);
-    rx.push(r4[5]/r4[0]);
-    rx.push(r5[5]/r5[0]);
+    /* cualquiernumero/!=0 */
+    if(r1[0] != 0)
+    {
+        rx.push(r1[5]/r1[0]);
+    }
+    if(r2[0] != 0)
+    {
+        rx.push(r2[5]/r2[0]);
+    }
+    if(r3[0] != 0)
+    {
+        rx.push(r3[5]/r3[0]);
+    }
+    if(r4[0] != 0)
+    {
+        rx.push(r4[5]/r4[0]);
+    }
+    if(r5[0] != 0)
+    {
+        rx.push(r5[5]/r5[0]);
+    }
+    
     rangoX = Math.max(...rx);
     console.log(rangoX);
     console.log(typeof(rx));
