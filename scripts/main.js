@@ -374,13 +374,22 @@ function valoresZ()
     vw= parseFloat( $('#fZd').val() );
     vcons= parseFloat( $('#fZcons').val() );
 }
-function evaluaZ
+function evaluaZ()
+{
+    
+}
 //function evalua
 
 /*Funcion aleatorio entre 0 y 1 */
 function aleatorio01()
 {
-    ale01=1;
+    ale01=Math.random().toFixed(2);
+    console.log(ale01);
+}
+/*Funcion que compara los vectores que aparecen dentro del rango */
+function comparaVec()
+{
+
 }
 
 // imprimimos que si se guardan los valores de las restricciones en los arreglos 
