@@ -4,11 +4,11 @@ var i,j;
 var sumaTotal = 0;
 var datosGeneraciones = [];
 //restricciones
-var r1 = [0,0,0,0,"",0]; //a,b,c,d, <=>, restriccion
-var r2 = [0,0,0,0,"",0];
-var r3 = [0,0,0,0,"",0];
-var r4 = [0,0,0,0,"",0];
-var r5 = [0,0,0,0,"",0];
+var r1 = []; //a,b,c,d, <=>, restriccion
+var r2 = [];
+var r3 = [];
+var r4 = [];
+var r5 = [];
 //
 var rx=[];
 var ry=[];
@@ -39,8 +39,8 @@ $(document).ready(function(){
 /*Funcion que genera el algoritmo genetico*/
 function evoluciona(){
 
-    poblacionInicial 	= parseInt($('#poblacion').val());
-    generaciones 		= parseInt($('#generaciones').val());
+    poblacionInicial 	= parseFloat($('#poblacion').val());
+    generaciones 		= parseFloat($('#generaciones').val());
     
 
     //guardamos las restricciones
@@ -51,8 +51,11 @@ function evoluciona(){
     r5 = restricciones(5);
     
     //creamos los rangos de cada una de las varibles}
-    
-    rangos(r1,r2,r3,r4,r5)
+    console.log("r1");
+    console.log(r1);
+    console.log("r2");
+    console.log(r2);
+    rangos()
 
     // obtenemos los tamaños de cromosomas de cada variable    
     mjX = numMJ(rangoX[0],rangoX[1],1);//enviamos limite inf, limite sup, precision de bit    
@@ -96,7 +99,7 @@ function iniciaPoblacion(){
                 var aleatorio = numeroAleatorio();
                 objetoInicial.cromosomaArray.push(aleatorio);
             }
-            objetoInicial.cromosomaValor = parseInt(objetoInicial.cromosomaArray.join(""),2);// convertimos el binario de la cadena a decimal
+            objetoInicial.cromosomaValor = parseFloat(objetoInicial.cromosomaArray.join(""),2);// convertimos el binario de la cadena a decimal
             // Cortamos los arreglos en los tamaños correspondientes
             objetoInicial.cromosomaArrayX = objetoInicial.cromosomaArray.slice(0,mjX);//PRIMERO QUE IMPRIME, UNO ANTES DEL QUE IMPRIME
             objetoInicial.cromosomaArrayY = objetoInicial.cromosomaArray.slice(mjX,mjY+mjX);
@@ -132,127 +135,100 @@ function restricciones(n){
     var r = [0,0,0,0,"",0]
     var letra = ["a","b","c","d","s","cons"]
     if (n == 1 ){
-        for (var i = 0; i < 6; i++)
-        r[i] = parseInt( $('#r1'+letra[i]+'').val() );
+        for (var i = 0; i < 6; i++){
+            if (i != 4) 
+                r[i] = parseFloat( $('#r1'+letra[i]+'').val() );
+            else
+                r[i] = $('#r1'+letra[i]+'').val();
+                
+        }
     }
     if (n == 2) {
-        for (var i = 0; i < 6; i++)
-        r[i] = parseInt( $('#r2'+letra[i]+'').val() );
+        for (var i = 0; i < 6; i++){
+            if (i != 4)
+            r[i] = parseFloat( $('#r2'+letra[i]+'').val() );
+            else
+            r[i] = $('#r2'+letra[i]+'').val();
+        }
     }
     if (n == 3) {
-        for (var i = 0; i < 6; i++) 
-        r[i] = parseInt( $('#r3'+letra[i]+'').val() );
+        for (var i = 0; i < 6; i++){
+            if (i != 4)
+            r[i] = parseFloat( $('#r3'+letra[i]+'').val() );
+            else
+            r[i] = $('#r3'+letra[i]+'').val();
+        } 
     }
     if (n == 4) {
-        for (var i = 0; i < 6; i++)
-        r[i] = parseInt( $('#r4'+letra[i]+'').val() );
+        for (var i = 0; i < 6; i++){
+            if (i != 4)
+            r[i] = parseFloat( $('#r4'+letra[i]+'').val() );
+            else
+            r[i] = $('#r4'+letra[i]+'').val();
+        }
+        
     }
     if (n == 5) {
-        for (var i = 0; i < 6; i++)
-            r[i] = parseInt($('#r5'+letra[i]+'').val() );
+        for (var i = 0; i < 6; i++){
+            if (i != 4)
+            r[i] = parseFloat($('#r5'+letra[i]+'').val() );
+            r[i] = $('#r5'+letra[i]+'').val();
+        }
+
     }
     return r;
 }
 
 /*Ahora si es rangos */
-function rangos(r1,r2,r3,r4,r5){
+function rangos(){
     //var rx=[]; objetoInicial.cromosomaArray.push(aleatorio);
     /* cualquiernumero/!=0 */
+    if (restriccionValida(r1))
+        dividirValores(r1);
     
-    if (restriccionValida(r1)) {
-        dividirValores(r1)
-    }
+    if (restriccionValida(r2))
+        dividirValores(r2);
+        
+    if (restriccionValida(r3)) 
+        dividirValores(r3);
+        
+    if (restriccionValida(r4))
+        dividirValores(r4);
+        
+    if (restriccionValida(r5)) 
+        dividirValores(r5);
     
-    if (restriccionValida(r2)) {
-        
-    }
-    if (restriccionValida(r3)) {
-        
-    }
-    
-    if (restriccionValida(r4)) {
-        
-    }
-    if (restriccionValida(r5)) {
-        
-    }
-    if(r1[0] != 0)
-    {
-        rx.push(r1[5]/r1[0]);
-    }
-    if(r2[0] != 0)
-    {
-        rx.push(r2[5]/r2[0]);
-    }
-    if(r3[0] != 0)
-    {
-        rx.push(r3[5]/r3[0]);
-    }
-    if(r4[0] != 0)
-    {
-        rx.push(r4[5]/r4[0]);
-    }
-    if(r5[0] != 0)
-    {
-        rx.push(r5[5]/r5[0]);
-    }
-    rangoX = Math.max(...rx);
-    console.log(rangoX);
-    console.log(typeof(rx));
+    rangoX = [0,Math.max(...rx)];
 
-    //var ry=[];
-    if(r1[1] != 0)
-        ry.push(r1[5]/r1[1]);
-    if(r2[1] != 0)
-        ry.push(r2[5]/r2[1]);
-    if(r3[1] != 0)
-        ry.push(r3[5]/r3[1]);
-    if(r4[1] != 0)
-        ry.push(r4[5]/r4[1]);
-    if(r5[1] != 0)
-        ry.push(r5[5]/r5[1]);
+    rangoY = [0,Math.max(...ry)];
 
-    rangoY = Math.max(...ry);
-    console.log(rangoY);
-    
-    //var rz=[];
-    if(r1[2] != 0)
-        rz.push(r1[5]/r1[2]);
-    if(r2[2] != 0)
-        rz.push(r2[5]/r2[2]);
-    if(r3[2] != 0)
-        rz.push(r3[5]/r3[2]);
-    if(r4[2] != 0)
-        rz.push(r4[5]/r4[2]);
-    if(r5[2] != 0)
-        rz.push(r5[5]/r5[2]);
+    rangoZ = [0,Math.max(...rz)];
 
-    rangoZ = Math.max(...rz);
-    console.log(rangoZ);
-
-    //var rw=[];//rango para w
-    if(r1[3] != 0)
-        rw.push(r1[5]/r1[3]);
-    if(r2[3] != 0)
-        rw.push(r2[5]/r2[3]);
-    if(r3[3] != 0)
-        rw.push(r3[5]/r3[3]);
-    if(r4[3] != 0)
-        rw.push(r4[5]/r4[3]);
-    if(r5[3] != 0)
-        rw.push(r5[5]/r5[3]);
-
-    rangoW = Math.max(...rw);
-    console.log(rangoW);   
+    rangoW = [0,Math.max(...rw)];
 
 }
 
 function restriccionValida(res){
-    if (res[0] == 0 && res[1] == 0 && res[2] == 0 && res[3] == 0)
-    return false;
+    if (res[0] == 0 && res[1] == 0 && res[2] == 0 && res[3] == 0){
+        return false;
+    }else {
+        return true;
+    }
 }
+
 function dividirValores(res){
-    return true;
+    console.log("Entre ala funcion");
+    if(res[0] != 0)
+        rx.push(res[5]/res[0]);
+    if(res[1] != 0)
+        ry.push(res[5]/res[1]);
+    if(res[2] != 0)
+        rz.push(res[5]/res[2]);
+    if(res[3] != 0)
+        rw.push(res[5]/res[3]);
+        
+        console.log(res);
+        return 
 }
 /*Funcion que saca el valor MJ de las variables */
 function numMJ(aj,bj,n)
@@ -284,7 +260,7 @@ function numXi()
     return Xn;
 }
 function valArreglo(arreglo){
-    var numero = parseInt(arreglo.join(""),2);
+    var numero = parseFloat(arreglo.join(""),2);
     if(isNaN(numero))
         return null;
     else 
