@@ -73,10 +73,8 @@ function evoluciona(){
     mjW = numMJ(rangoW[0],rangoW[1],1);//enviamos limite inf, limite sup, precision de bit    
     genes = mjX + mjY + mjZ + mjW; // definimos el tamaño del vector
     iniciaPoblacion();
-    console.log(poblacion);
     iteracion1()
-    iterarcionN(generaciones - 1)
-    muta();
+    //iterarcionN(generaciones - 1)
 }
 
 /*Funcion carga una población inicial para evolucionar*/
@@ -100,6 +98,7 @@ function iniciaPoblacion(){
             cromosomaValorW:0,
             cromosomaZ:0,
             cromosomazAcumulado:0,
+            cromosomapAcumulado:0,
             aleatorio:aleatorio01(),
         };
         objetoInicial.cromosomaindice = i+1;
@@ -357,11 +356,9 @@ function muta()
 {
     /*Obteniendo el tamaño del vector */
     var tamV=mjX+mjY+mjZ+mjW;
-    console.log( typeof(tamV) );
-    console.log(  Math.round(Math.random()*(tamV-1)) );
+
     /*Generando el numero aleatorio entre 0 y el tamaño del vector */
     numA= parseInt( Math.round(Math.random()*(tamV-1)) );
-    console.log(numA);
     
     if(cromosoma==0)
         return cromosoma=1;
