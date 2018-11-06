@@ -4,6 +4,7 @@ var i,j;
 var sumaTotal = 0;
 var datosGeneraciones = [];
 var numA;
+var ale01;//numero aleatorio entre 0 y 1
 /*Variables globales de FO */
 var vx= 0;
 var vy= 0;
@@ -373,7 +374,11 @@ function valoresZ()
 
 //function evalua
 
-
+/*Funcion aleatorio entre 0 y 1 */
+function aleatorio01()
+{
+    ale01=1;
+}
 
 // imprimimos que si se guardan los valores de las restricciones en los arreglos 
 /*
