@@ -44,7 +44,7 @@ function porcentajeAcumuladoZ(){
 
 /*Funcion que compara los vectores que aparecen dentro del rango */
 function comparaVec(array)
-{
+{/*poblacion[i] */
     /*comparando los valores de %zac y #aleat01 y con los subindices
     y con el numero de vectores n*/
     //array.forEach(comparaVec);
