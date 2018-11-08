@@ -6,6 +6,8 @@ var datosGeneraciones = [];
 var numA;
 var ale01;//numero aleatorio entre 0 y 1
 var acumulado = 0;
+var cromosomaDebil;
+var cromosomaFuerte = 0;
 /*Variables globales de FO */
 var vx= 0;
 var vy= 0;
@@ -37,6 +39,7 @@ var mjW = 0;// numero de cromosomas de cada variable
 
 var poblacionInicial = 50;
 var generaciones = 30;
+var n = 0
 var x = "poblacion"
 $(document).ready(function(){
     $('form').submit(function(){
@@ -49,9 +52,16 @@ $(document).ready(function(){
 function evoluciona(){
     poblacionInicial 	= parseFloat($('#poblacion').val());
     generaciones 		= parseFloat($('#generaciones').val());
-    
+    n 		= parseFloat($('#presicion').val());
     //function valores de z
     valoresZ();
+    maxMin();
+    
+    console.log("Valor X de la funcion " + vx);
+    console.log("Valor Y de la funcion " + vy);
+    console.log("Valor Z de la funcion " + vz);
+    console.log("Valor W de la funcion " + vw);
+    console.log("Valor CONS de la funcion " + vcons);
     //guardamos las restricciones
     r1 = restricciones(1);
     r2 = restricciones(2);
@@ -60,26 +70,34 @@ function evoluciona(){
     r5 = restricciones(5);
     
     //creamos los rangos de cada una de las varibles}
-    console.log("r1");
-    console.log(r1);
-    console.log("r2");
-    console.log(r2);
     rangos()
-
+    
+    console.log("Los rangos de x son : " + rangoX);
+    console.log("Los rangos de y son : " + rangoY);
+    console.log("Los rangos de z son : " + rangoZ);
+    console.log("Los rangos de w son : " + rangoW);
     // obtenemos los tamaños de cromosomas de cada variable    
-    mjX = numMJ(rangoX[0],rangoX[1],1);//enviamos limite inf, limite sup, precision de bit    
-    mjY = numMJ(rangoY[0],rangoY[1],1);//enviamos limite inf, limite sup, precision de bit
-    mjZ = numMJ(rangoZ[0],rangoZ[1],4);//enviamos limite inf, limite sup, precision de bit
-    mjW = numMJ(rangoW[0],rangoW[1],1);//enviamos limite inf, limite sup, precision de bit    
+    mjX = numMJ(rangoX[0],rangoX[1]);//enviamos limite inf, limite sup, precision de bit    
+    mjY = numMJ(rangoY[0],rangoY[1]);//enviamos limite inf, limite sup, precision de bit
+    mjZ = numMJ(rangoZ[0],rangoZ[1]);//enviamos limite inf, limite sup, precision de bit
+    mjW = numMJ(rangoW[0],rangoW[1]);//enviamos limite inf, limite sup, precision de bit    
     genes = mjX + mjY + mjZ + mjW; // definimos el tamaño del vector
+    
+    console.log("Los valores de mjx "+mjX);
+    console.log("Los valores de mjy "+mjY);
+    console.log("Los valores de mjz "+mjZ);
+    console.log("Los valores de mjw "+mjW);
+    
     iniciaPoblacion();
-    iteracion1()
+    console.log(poblacion);
+    iteracion1();
     //iterarcionN(generaciones - 1)
+    console.log(poblacion);
 }
 
 /*Funcion carga una población inicial para evolucionar*/
 function iniciaPoblacion(){
-    console.log('--- Poblacion Inicial ---');
+
     poblacion = [];
     for(i=0;i<poblacionInicial;i++){
         
@@ -98,15 +116,17 @@ function iniciaPoblacion(){
             cromosomaValorW:0,
             cromosomaZ:0,
             cromosomazAcumulado:0,
-            cromosomapAcumulado:0,
+            pAcumulado:0,
             aleatorio:0,
+            nivel:0
         };
         objetoInicial.cromosomaindice = i+1;
             var valido = false;
-            for(j=0;j<genes;j++){
+            for(j=0;j < genes;j++){
                 var aleatorio = numeroAleatorio();
                 objetoInicial.cromosomaArray.push(aleatorio);
             }
+            
             objetoInicial.cromosomaValor = parseFloat(parseInt(objetoInicial.cromosomaArray.join(""),2));// convertimos el binario de la cadena a decimal
             // Cortamos los arreglos en los tamaños correspondientes
             objetoInicial.cromosomaArrayX = objetoInicial.cromosomaArray.slice(0,mjX);//PRIMERO QUE IMPRIME, UNO ANTES DEL QUE IMPRIME
@@ -122,7 +142,7 @@ function iniciaPoblacion(){
             
             
             if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW)){
-                console.log("CIUDADANO VALIDO");
+                console.log("Cromosoma VALIDO");
             
             objetoInicial.cromosomaZ = evaluaZ(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW);
                 valido = true;
@@ -218,7 +238,6 @@ function rangos(){
     rangoZ = [0,infinito(Math.max(...rz))];
 
     rangoW = [0,infinito(Math.max(...rw))];
-    console.log(typeof(rangoW[1]));
 
 }
 
@@ -231,18 +250,16 @@ function restriccionValida(res){
 }
 
 function dividirValores(res){
-    console.log("Entre ala funcion");
     if(res[0] != 0)
         rx.push(res[5]/res[0]);
     if(res[1] != 0)
         ry.push(res[5]/res[1]);
     if(res[2] != 0)
         rz.push(res[5]/res[2]);
-    if(res[3] != 0)
-        rw.push(res[5]/res[3]);
-        
+    if(res[3] != 0){
         console.log(res);
-        return 
+        rw.push(res[5]/res[3]);
+    }
 }
 function infinito(number){
     
@@ -254,7 +271,7 @@ function infinito(number){
         return 0;
 }
 /*Funcion que saca el valor MJ de las variables */
-function numMJ(aj,bj,n)
+function numMJ(aj,bj)
 {
     var resultado;
     if (aj == 0 && bj == 0) 
@@ -284,6 +301,7 @@ function numXi()
 }
 //valida el arreglo para que sepamos cuales usaremos
 function valArreglo(arreglo){
+    
     var numero = parseFloat(parseInt(arreglo.join(""),2));
     if(isNaN(numero))
         return null;
@@ -299,49 +317,38 @@ function evaluaCromosoma(cromoX,cromoY,cromoZ,cromoW){
     var aprobacion5 = true;
     
     
-    if(restriccionValida(r1)){
-        aprobacion1 = evalua(cromoX,cromoY,cromoZ,cromoW,r1)
-        //console.log("APROBO RESTRICCION 1");
-    }
+    if(restriccionValida(r1))
+        aprobacion1 = evalua(cromoX,cromoY,cromoZ,cromoW,r1);
     
-    if (restriccionValida(r2)) {
-        aprobacion2 = evalua(cromoX,cromoY,cromoZ,cromoW,r2)
-        //console.log("APROBO LA RESTRICCION 2");
-    }
-    if (restriccionValida(r3)) {
-        aprobacion3 = evalua(cromoX,cromoY,cromoZ,cromoW,r3)
-        //console.log("APROBO LA RESTRICCION 3");
-    }
-    if (restriccionValida(r4)) {
-        aprobacion4 = evalua(cromoX,cromoY,cromoZ,cromoW,r4)
-        //console.log("APROBO RESTRICCION 4");
-        console.log(aprobacion4);
+    if (restriccionValida(r2))
+        aprobacion2 = evalua(cromoX,cromoY,cromoZ,cromoW,r2);
         
-    }
-    if (restriccionValida(r5)) {
-        aprobacion5 = evalua(cromoX,cromoY,cromoZ,cromoW,r5)
-        console.log("APROBO RESTRICCION 5");
+    if (restriccionValida(r3))
+        aprobacion3 = evalua(cromoX,cromoY,cromoZ,cromoW,r3);
+
+    if (restriccionValida(r4))
+        aprobacion4 = evalua(cromoX,cromoY,cromoZ,cromoW,r4);
         
-    }
+    if (restriccionValida(r5))
+        aprobacion5 = evalua(cromoX,cromoY,cromoZ,cromoW,r5);
 
     if (aprobacion1 == true && aprobacion2 == true && aprobacion3 == true && aprobacion4 == true && aprobacion5 == true)
         return true;    
-        else 
+    else 
         return false;
 }
 //evaluamos el cromosoma en cada uno de las restricciones 
-function evalua(cromoX,cromoY,cromoZ,cromoW,r){
-    //console.log((cromoX*r[0]+cromoY*r[1]+cromoZ*r[2]+cromoW*[3]));
+function evalua(cX,cY,cZ,cW,r){
+    
     if (r[4] == "<=") {
-        if ( (cromoX*r[0]+cromoY*r[1]+cromoZ*r[2]+cromoW*[3]) <= r[5] ){
+        if ( (cX*r[0]+cY*r[1]+cZ*r[2]+cW*[3]) <= r[5] ){
             return true;
         }
             else
             return false;
     }
     else if (r[4] == ">="){
-        if ( (cromoX*r[0]+cromoY*r[1]+cromoZ*r[2]+cromoW*[3]) >= r[5] ){
-            
+        if ( (cX*r[0]+cY*r[1]+cZ*r[2]+cW*[3]) >= r[5] ){
             return true;
         }
             else
@@ -356,15 +363,50 @@ function muta()
 {
     /*Obteniendo el tamaño del vector */
     var tamV=mjX+mjY+mjZ+mjW;
-
+    console.log(tamV);
+    bandera = true;
     /*Generando el numero aleatorio entre 0 y el tamaño del vector */
-    numA= parseInt( Math.round(Math.random()*(tamV-1)) );
+    do {
     
-    if(cromosoma==0)
-        return cromosoma=1;
-    else
-        return cromosoma=0;
+    numA = parseInt( Math.round(Math.random()*(tamV-1)) );
         
+    
+    if(poblacion[cromosomaDebil].cromosomaArray[numA] == 0){
+        poblacion[cromosomaDebil].cromosomaArray[numA] = 1;
+    }
+    else{
+        
+         poblacion[cromosomaDebil].cromosomaArray[numA] = 0;
+     }
+     
+     poblacion[cromosomaDebil].cromosomaValor = parseFloat(parseInt( poblacion[cromosomaDebil].cromosomaArray.join(""),2));// convertimos el binario de la cadena a decimal
+     poblacion[cromosomaDebil].cromosomaArrayX = poblacion[cromosomaDebil].cromosomaArray.slice(0,mjX);//PRIMERO QUE IMPRIME, UNO ANTES DEL QUE IMPRIME
+     poblacion[cromosomaDebil].cromosomaArrayY = poblacion[cromosomaDebil].cromosomaArray.slice(mjX,mjY+mjX);
+     poblacion[cromosomaDebil].cromosomaArrayZ = poblacion[cromosomaDebil].cromosomaArray.slice(mjX+mjY,mjZ+mjX+mjY);
+     poblacion[cromosomaDebil].cromosomaArrayW = poblacion[cromosomaDebil].cromosomaArray.slice(mjZ+mjX+mjY,mjZ+mjX+mjY+mjW);
+     poblacion[cromosomaDebil].cromosomaValorX = valArreglo(poblacion[cromosomaDebil].cromosomaArrayX)
+     poblacion[cromosomaDebil].cromosomaValorY = valArreglo(poblacion[cromosomaDebil].cromosomaArrayY)
+     poblacion[cromosomaDebil].cromosomaValorZ = valArreglo(poblacion[cromosomaDebil].cromosomaArrayZ)
+     poblacion[cromosomaDebil].cromosomaValorW = valArreglo(poblacion[cromosomaDebil].cromosomaArrayW)
+      
+     
+     if (evaluaCromosoma(poblacion[cromosomaDebil].cromosomaValorX,poblacion[cromosomaDebil].cromosomaValorY,poblacion[cromosomaDebil].cromosomaValorZ,poblacion[cromosomaDebil].cromosomaValorW))
+     {
+         poblacion[cromosomaDebil].cromosomaZ = evaluaZ(poblacion[cromosomaDebil].cromosomaValorX,poblacion[cromosomaDebil].cromosomaValorY,poblacion[cromosomaDebil].cromosomaValorZ,poblacion[cromosomaDebil].cromosomaValorW);
+     
+         bandera = false;
+     }
+     /*
+     
+     objetoInicial.cromosomaArrayW = objetoInicial.cromosomaArray.slice(mjZ+mjX+mjY,mjZ+mjX+mjY+mjW);
+     
+     
+     objetoInicial.cromosomaValorX = valArreglo(objetoInicial.cromosomaArrayX)
+     
+     */         
+     
+    
+ } while (bandera == true);
 }
 
 function valoresZ()
@@ -381,16 +423,29 @@ function evaluaZ(valx,valy,valz,valw){
     z = 0;
     w = 0;
     if (valx != null)
-        x=valx;
+        x= valx;
     if(valy != null)
         y= valy;
     if(valz != null)
         z= valz;
     if(valw != null)
         w= valw;
-    
-    console.log((x*vx+y*vy+z*vz+w*vw));
+
     return (x*vx+y*vy+z*vz+w*vw+vcons);
+}
+
+
+
+function maxMin(){
+    
+    if( $('#opcion').val() == "MIN"){
+    vx= (vx)*-1;
+    vy= (vy)*-1;
+    vz= (vz)*-1;
+    vw= (vw)*-1;
+    vcons= (vcons)*-1;
+    }
+    
 }
 //function evalua
 // imprimimos que si se guardan los valores de las restricciones en los arreglos 
