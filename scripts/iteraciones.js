@@ -1,7 +1,8 @@
-var pAcumulado = 0;
+var acumulacion= 0;
 
 function iteracion1 (){
-
+acumulacion = 0;
+acumulado = 0;
 zAcumulado();
 porcentajeZ();
 porcentajeAcumuladoZ();
@@ -9,11 +10,13 @@ generaAleatorio();
 comparaVec(poblacion);
 console.log(poblacion);
 masDebil();
+//debiles();
+
 muta();
 
 generaciones = generaciones - 1;
 if (generaciones >= 1){
-//reiniciaNivel();
+reiniciaNivel();
 iteracion1() 
 }else if(generaciones == 0){
 masFuerte();
@@ -39,10 +42,11 @@ function porcentajeZ(){
 function porcentajeAcumuladoZ(){
     poblacion.forEach(element => {
 
-    pAcumulado += element.cromosomazAcumulado;
-    element.pAcumulado = pAcumulado;
-    if (element.pAcumulado >= 0.99)
-        element.pAcumulado =1;
+    acumulacion += element.cromosomazAcumulado;
+    console.log(element.pAcumulado);
+    element.pAcumulado = acumulacion;
+    
+
     });
 }
 function generaAleatorio(){
@@ -84,9 +88,11 @@ function masDebil(){
         
         if (debil > poblacion[i].nivel ) {
             debil = poblacion[i].nivel;
+            nivelDebil = debil;
             cromosomaDebil = i;
         }
     }
+    console.log("el nivel mas debil es:"+cromosomaDebil);
     
 }
 function masFuerte (){

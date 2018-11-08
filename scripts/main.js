@@ -8,6 +8,7 @@ var ale01;//numero aleatorio entre 0 y 1
 var acumulado = 0;
 var cromosomaDebil;
 var cromosomaFuerte = 0;
+var nivelDebil= 0;
 /*Variables globales de FO */
 var vx= 0;
 var vy= 0;
