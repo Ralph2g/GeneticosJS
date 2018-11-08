@@ -1,8 +1,11 @@
-var acumulacion= 0;
-
+var acumulacion = 0;
+var nivelFuerte = 0;
+var arrayFuerte = [];
 function iteracion1 (){
 acumulacion = 0;
 acumulado = 0;
+nivelFuerte = 0;
+arrayFuerte = [];
 zAcumulado();
 porcentajeZ();
 porcentajeAcumuladoZ();
@@ -17,9 +20,10 @@ muta();
 generaciones = generaciones - 1;
 if (generaciones >= 1){
 reiniciaNivel();
-iteracion1() 
+iteracion1(); 
 }else if(generaciones == 0){
 masFuerte();
+numeroFuerte();;
 console.log("El cromosoma mas fuerte es:" + cromosomaFuerte);
 }
 
@@ -42,9 +46,19 @@ function porcentajeZ(){
 function porcentajeAcumuladoZ(){
     poblacion.forEach(element => {
 
+if (typeof acumulacion === "undefined") {
+    acumulacion = 1
+}else{
     acumulacion += element.cromosomazAcumulado;
     console.log(element.pAcumulado);
+}
+    
+    if (typeof acumulacion === "undefined") {
+            element.pAcumulado = 1;
+    }else
     element.pAcumulado = acumulacion;
+    
+    
     
 
     });
@@ -58,20 +72,22 @@ function generaAleatorio(){
 /*Funcion aleatorio entre 0 y 1 */
 function aleatorio01()
 {
-    return parseFloat(ale01=Math.random().toFixed(2));
+    return parseFloat(Math.random().toFixed(2));
 }
 /*Funcion que compara los vectores que aparecen dentro del rango */
 function comparaVec(array){
     for (var i = 0;i<= poblacionInicial-1 ;i++){
         
-        compara(poblacion[i].aleatorio,i);
+        compara(poblacion[i].aleatorio,0);
         
         
     }
 }
 
 function compara(aleatorio,indice){
-    
+    if (typeof poblacion[indice].pAcumulado === "undefined") {
+        poblacion[indice].pAcumulado = 1
+    }
     if (aleatorio <= poblacion[indice].pAcumulado)
         poblacion[indice].nivel += 1;
     else
@@ -96,12 +112,13 @@ function masDebil(){
     
 }
 function masFuerte (){
-    var fuerte = poblacion[0].nivel;
+    fuerte = poblacion[0].nivel;
     
-    for (var i = 1; i < poblacion.length; i++) {
-        if (fuerte < poblacion[i].nivel ) {
+    for (var i = 0; i < poblacion.length; i++) {
+        if (fuerte <= poblacion[i].nivel ) {
             fuerte = poblacion[i].nivel;
             cromosomaFuerte = i;
+            nivelFuerte = poblacion[i].nivel
         }
     }
 }
@@ -112,5 +129,32 @@ function reiniciaNivel(){
     poblacion.forEach( element => {
         element.nivel = 0;
     });
+    
+}
+
+
+function numeroFuerte(){
+    var valorXX = nivelFuerte;
+    
+    for (var i = 0; i < poblacion.length; i++) {
+        if (valorXX == poblacion[i].nivel )
+        arrayFuerte.push(poblacion[i])
+    }
+    console.log(arrayFuerte);
+    cromosomaFuerte  = fuerteDefinitivo()
+}
+
+function fuerteDefinitivo(){
+    
+    var actual = arrayFuerte[0].cromosomaZ;
+    var indiceSupremo = arrayFuerte[0].cromosomaindice;
+    for (var i = 0; i < arrayFuerte.length; i++) {
+        if (actual < arrayFuerte[i].cromosomaZ) {
+            actual = arrayFuerte[i].cromosomaZ;
+            indiceSupremo = arrayFuerte[i].cromosomaindice;
+            console.log(arrayFuerte[i].cromosomaZ);
+        }
+    }
+    return indiceSupremo-1;
     
 }

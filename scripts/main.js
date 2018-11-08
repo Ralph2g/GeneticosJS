@@ -64,6 +64,11 @@ function evoluciona(){
     console.log("Valor W de la funcion " + vw);
     console.log("Valor CONS de la funcion " + vcons);
     //guardamos las restricciones
+    Math.abs(vx);
+    Math.abs(vy);
+    Math.abs(vz);
+    Math.abs(vw);
+    
     r1 = restricciones(1);
     r2 = restricciones(2);
     r3 = restricciones(3);
@@ -145,7 +150,7 @@ function iniciaPoblacion(){
             if (evaluaCromosoma(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW)){
                 console.log("Cromosoma VALIDO");
             
-            objetoInicial.cromosomaZ = evaluaZ(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW);
+            objetoInicial.cromosomaZ = Math.abs(evaluaZ(objetoInicial.cromosomaValorX,objetoInicial.cromosomaValorY,objetoInicial.cromosomaValorZ,objetoInicial.cromosomaValorW));
                 valido = true;
             }
         
@@ -230,6 +235,7 @@ function rangos(){
         
     if (restriccionValida(r5)) 
         dividirValores(r5);
+        
     
     
     rangoX = [0,infinito(Math.max(...rx))];
@@ -355,8 +361,11 @@ function evalua(cX,cY,cZ,cW,r){
             else
             return false;
     }
+    else if (r[4] == "="){
+        return (cX*r[0]+cY*r[1]+cZ*r[2]+cW*[3]) == r[5];
+    }
     else {
-        return false;
+        return false
     }
 }
 
@@ -393,7 +402,7 @@ function muta()
      
      if (evaluaCromosoma(poblacion[cromosomaDebil].cromosomaValorX,poblacion[cromosomaDebil].cromosomaValorY,poblacion[cromosomaDebil].cromosomaValorZ,poblacion[cromosomaDebil].cromosomaValorW))
      {
-         poblacion[cromosomaDebil].cromosomaZ = evaluaZ(poblacion[cromosomaDebil].cromosomaValorX,poblacion[cromosomaDebil].cromosomaValorY,poblacion[cromosomaDebil].cromosomaValorZ,poblacion[cromosomaDebil].cromosomaValorW);
+         poblacion[cromosomaDebil].cromosomaZ = Math.abs(evaluaZ(poblacion[cromosomaDebil].cromosomaValorX,poblacion[cromosomaDebil].cromosomaValorY,poblacion[cromosomaDebil].cromosomaValorZ,poblacion[cromosomaDebil].cromosomaValorW));
      
          bandera = false;
      }
